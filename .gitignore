@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+odoo-venv13/
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+../.idea/
+
+# Folders
+icode_db_date_updater/db_date_updater/
+icode_techelectro/
