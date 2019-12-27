@@ -8,5 +8,10 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="product.product_template_tree_view"/>
         <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                records.publicize_on_onliner()
+        </field>
     </record>
 </odoo>
