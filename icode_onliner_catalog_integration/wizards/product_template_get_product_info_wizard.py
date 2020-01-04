@@ -9,10 +9,8 @@ _logger = logging.getLogger(__name__)
 from odoo import models, fields, api
 
 
-class ResPartnerGetUnpInfoWizard(models.TransientModel):
-    """Model Template Description"""
+class ProductTemplateGetProductInfoWizard(models.TransientModel):
     _name = 'product.template.get_product_info_wizard'
-    _description = __doc__
 
     product_id = fields.Many2one()
     product_category = fields.Char()
@@ -23,15 +21,14 @@ class ResPartnerGetUnpInfoWizard(models.TransientModel):
     comment = fields.Char()
     producer = fields.Char()
     importer = fields.Char()
-    serviceCenters = fields.Char()
     warranty = fields.Char()
     deliveryTownTime = fields.Char()
     deliveryTownPrice = fields.Monetary()
     deliveryCountryTime = fields.Char()
     deliveryCountryPrice = fields.Monetary()
     productLifeTime = fields.Char()
-    isCashless = fields.Char()
-    isCredit = fields.Char()
+    isCashless = fields.Selection()
+    isCredit = fields.Selection()
     stockStatus = fields.Char()
     courierDeliveryPrices = fields.Selection()
 
@@ -68,33 +65,33 @@ class ResPartnerGetUnpInfoWizard(models.TransientModel):
     #         }
     #     }
 
-    def onclick_select_publichase_on_onliner_button(self):
-        self.ensure_one()
-        ResPartner = self.env['res.partner']
-        partner_id = ResPartner.search([('id', '=', self.partner_id.id)], limit=1)
-        vals = dict(
-            # country=self.country,
-            city=self.city,
-            country_id=self.country_id.id,
-            email=self.email,
-            legal_address=self.legal_address,
-            name=self.name,
-            phone=self.phone,
-            street2=self.street2,
-            street=self.street,
-            vat=self.vat,
-            website=self.website,
-        )
-        vals = {k: v for k, v in vals.items() if v}
-        partner_id.write(vals)
-        view = self.env.ref('base.view_partner_form')
-        return {
-            # 'name': 'Task created',
-            'view_type': 'form',
-            'view_mode': 'form',
-            'view_id': view.id,
-            'res_model': 'res.partner',
-            'type': 'ir.actions.act_window',
-            'res_id': partner_id.id,
-            'context': self.env.context
-        }
+    # def onclick_select_publichase_on_onliner_button(self):
+    #     self.ensure_one()
+    #     ResPartner = self.env['res.partner']
+    #     partner_id = ResPartner.search([('id', '=', self.partner_id.id)], limit=1)
+    #     vals = dict(
+    #         # country=self.country,
+    #         city=self.city,
+    #         country_id=self.country_id.id,
+    #         email=self.email,
+    #         legal_address=self.legal_address,
+    #         name=self.name,
+    #         phone=self.phone,
+    #         street2=self.street2,
+    #         street=self.street,
+    #         vat=self.vat,
+    #         website=self.website,
+    #     )
+    #     vals = {k: v for k, v in vals.items() if v}
+    #     partner_id.write(vals)
+    #     view = self.env.ref('base.view_partner_form')
+    #     return {
+    #         # 'name': 'Task created',
+    #         'view_type': 'form',
+    #         'view_mode': 'form',
+    #         'view_id': view.id,
+    #         'res_model': 'res.partner',
+    #         'type': 'ir.actions.act_window',
+    #         'res_id': partner_id.id,
+    #         'context': self.env.context
+    #     }

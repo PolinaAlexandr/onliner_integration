@@ -8,11 +8,25 @@ from odoo import fields, models, api
 class OnlinerCatalog(models.Model):
     _inherit = 'product.template'
 
-    def get_product_info(self):
-        self.ensure_one()
-        active_products_ids = self.env['product.template'].browse(self._context.get('active_ids'))
-        # print(active_products_ids)
-        country_id = self.env.ref('base.by').id  # Belarus by default
+    # def publicize_on_onliner(self):
+    #
+    #     summary_url = 'https://b2bapi.onliner.by/positions/{}?access-token={}'
+    #     headers = {'Content-Type': 'application/json'
+    #     token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
+    #     # response_egr = requests.get(egr_url.format(unp, token))
+    #     # res_egr = json.loads(response_egr.content.decode('utf-8'))
+    #     response_summary = requests.get(summary_url.format(unp, token))
+    #     res_summary = json.loads(response_summary.content.decode('utf-8'))
+    #     # print(res_egr)
+    #     # return res_egr
+    #     print(res_summary)
+    #     return res_summary
+
+    # def get_product_info(self):
+    #     self.ensure_one()
+    #     active_products_ids = self.env['product.template'].browse(self._context.get('active_ids'))
+    #     print(active_products_ids)
+        # country_id = self.env.ref('base.by').id  # Belarus by default
         # for product_id in active_ids:
         #     product_data = self.env.get()
         #     exporter_dict = {
@@ -45,17 +59,3 @@ class OnlinerCatalog(models.Model):
         #             }
         #         }
         #     }
-
-    # def publicize_on_onliner(self):
-    #
-    #     summary_url = 'https://b2bapi.onliner.by/positions/{}?access-token={}'
-    #     headers = {'Content-Type': 'application/json'
-    #     token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
-    #     # response_egr = requests.get(egr_url.format(unp, token))
-    #     # res_egr = json.loads(response_egr.content.decode('utf-8'))
-    #     response_summary = requests.get(summary_url.format(unp, token))
-    #     res_summary = json.loads(response_summary.content.decode('utf-8'))
-    #     # print(res_egr)
-    #     # return res_egr
-    #     print(res_summary)
-    #     return res_summary

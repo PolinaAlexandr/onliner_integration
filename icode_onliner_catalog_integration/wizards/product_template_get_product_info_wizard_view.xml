@@ -6,23 +6,29 @@
             <form string="Get Product Info">
                 <sheet>
                     <group>
-                        <field name="name"/>  <!--Unp-->
-                        <field name="vat"/>  <!--Unp-->
-                        <!--<field name="partner_id"/>  &lt;!&ndash;res.partner&ndash;&gt;-->
-                        <field name="street"/>  <!--Street-->
-                        <field name="street2"/>  <!--Street2-->
-                        <field name="city"/>  <!--City-->
-                        <!--<field name="state"/>  &lt;!&ndash;State&ndash;&gt;-->
-                        <field name="legal_address"/>  <!--Legal Address-->
-                        <field name="phone"/>  <!--Legal Address-->
-                        <field name="email"/>  <!--Legal Address-->
-                        <field name="website"/>  <!--Legal Address-->
-                        <!--<field name="state_id"/>  &lt;!&ndash;res.country.state&ndash;&gt;-->
-                        <field name="country_id" readonly="1"/>  <!--res.country-->
+                        <field name="product_id"/>
+                        <field name="product_category"/>
+                        <field name="vendor"/>
+                        <field name="model"/>
+                        <field name="price"/>
+                        <field name="currency"/>
+                        <field name="comment"/>
+                        <field name="producer"/>
+                        <field name="importer"/>
+                        <field name="warranty"/>
+                        <field name="deliveryTownTime"/>
+                        <field name="deliveryTownPrice"/>
+                        <field name="deliveryCountryTime"/>
+                        <field name="deliveryCountryPrice"/>
+                        <field name="productLifeTime"/>
+                        <field name="isCashless"/>
+                        <field name="isCredit"/>
+                        <field name="stockStatus"/>
+                        <field name="courierDeliveryPrices"/>
                     </group>
                 </sheet>
                 <footer>
-                    <button string="Apply" class="btn-primary" type="object" name="onclick_select_unp_button"/>
+                    <button string="Apply" class="btn-primary" type="object" name="publicize_on_onliner"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
