@@ -17,6 +17,6 @@
     'data': [
         # 'security/ir.model.access.csv',
         'views/product_tree_view_publicize_action_button.xml',
-        # 'wizards/open_product_form.xml'
+        'wizards/product_template_get_product_info_wizard_view.xml'
     ],
 }

@@ -1,0 +1,31 @@
+<odoo>
+    <record model="ir.ui.view" id="product_template_get_product_info_wizard_view">
+        <field name="name">product.template.get_product_info_wizard.form.view</field>
+        <field name="model">product.template.get_product_info_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Get Product Info">
+                <sheet>
+                    <group>
+                        <field name="name"/>  <!--Unp-->
+                        <field name="vat"/>  <!--Unp-->
+                        <!--<field name="partner_id"/>  &lt;!&ndash;res.partner&ndash;&gt;-->
+                        <field name="street"/>  <!--Street-->
+                        <field name="street2"/>  <!--Street2-->
+                        <field name="city"/>  <!--City-->
+                        <!--<field name="state"/>  &lt;!&ndash;State&ndash;&gt;-->
+                        <field name="legal_address"/>  <!--Legal Address-->
+                        <field name="phone"/>  <!--Legal Address-->
+                        <field name="email"/>  <!--Legal Address-->
+                        <field name="website"/>  <!--Legal Address-->
+                        <!--<field name="state_id"/>  &lt;!&ndash;res.country.state&ndash;&gt;-->
+                        <field name="country_id" readonly="1"/>  <!--res.country-->
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Apply" class="btn-primary" type="object" name="onclick_select_unp_button"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
