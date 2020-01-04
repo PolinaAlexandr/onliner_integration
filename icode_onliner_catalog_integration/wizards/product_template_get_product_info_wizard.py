@@ -32,7 +32,10 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
     stockStatus = fields.Char()
     courierDeliveryPrices = fields.Selection()
 
-
+    def get_product_info(self):
+        product_ids = self.env['product.template'].browse(self._context.get('active_ids'))
+        if len(product_ids) > 1:
+            pass
 
     # "id": 1,
 
