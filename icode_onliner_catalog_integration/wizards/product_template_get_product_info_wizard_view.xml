@@ -34,4 +34,12 @@
             </form>
         </field>
     </record>
+    <record id="change_expense_sheet_action" model="ir.actions.act_window">
+        <field name="name">Product Info</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template.get_product_info_wizard</field>
+        <field name="view_id" ref="product.model_product_template"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 </odoo>
