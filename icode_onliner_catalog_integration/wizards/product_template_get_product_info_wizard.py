@@ -1,18 +1,10 @@
-"""
-TMS Load delivery route cost calculator
-"""
-
-import logging
-
-_logger = logging.getLogger(__name__)
-
 from odoo import models, fields, api
 
 
 class ProductTemplateGetProductInfoWizard(models.TransientModel):
     _name = 'product.template.get_product_info_wizard'
 
-    product_id = fields.Many2one()
+    product_ids = fields.Many2many('product.template', string='Selected Products', compute='_compute_product_statistics')
     product_category = fields.Char()
     vendor = fields.Char()
     model = fields.Char('')
@@ -31,11 +23,36 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
     isCredit = fields.Selection()
     stockStatus = fields.Char()
     courierDeliveryPrices = fields.Selection()
+    product_count = fields.Integer(string='Products Quantity', defaul=0, compute='_compute_product_statistics')
 
-    def get_product_info(self):
+    def _compute_product_statistics(self):
+
         active_id = self._context.get('active_id')
         active_ids = self._context.get('active_ids', [active_id] if active_id else [])
-        for active_id in active_ids:
-            self.product_id = self.env['product.template'].search([('product_id', 'in', 'active_ids')]).id
-            self.product_category = self.env
+        results = self.env['product.template'].read_group(
+            [('product_id', 'in', active_ids)], lazy=False)
+        mapped_data = {}
+        for result in results:
+            product_info = mapped_data.get(result['product_id'][0],
+                                           {'product_count': 0})
+            product_info['product_ids_count'] += result['__count']
+            product_info['product_count'] += 1
+            if result['product_id']:
+                product_info['product_ids'].add(result['product_id'][0])
+            mapped_data[result['visitor_id'][0]] = product_info
+            for selected_product in self:
+                product_info = mapped_data.get(selected_product.id,
+                                               {'page_count': 0, 'visitor_page_count': 0, 'product_ids': set()})
+                selected_product.product_ids = [(6, 0, product_info['product_ids'])]
+                selected_product.product_count = product_info['product_count']
+        # active_id = self._context.get('active_id')
+        # self.number_of_selected_products_for_synchronization = \
+        #     len(self._context.get('active_ids', [active_id] if active_id else []))
 
+    # def get_product_info(self):
+    #     active_id = self._context.get('active_id')
+    #     active_ids = self._context.get('active_ids', [active_id] if active_id else [])
+    #     for active_id in active_ids:
+    #         self.product_id = self.env['product.template'].search([('product_id', 'in', 'active_ids')]).id
+    #         self.product_category = self.env
+    #

@@ -6,25 +6,8 @@
             <form string="Get Product Info">
                 <sheet>
                     <group>
-                        <field name="product_id"/>
-                        <field name="product_category"/>
-                        <field name="vendor"/>
-                        <field name="model"/>
-                        <field name="price"/>
-                        <field name="currency"/>
-                        <field name="comment"/>
-                        <field name="producer"/>
-                        <field name="importer"/>
-                        <field name="warranty"/>
-                        <field name="deliveryTownTime"/>
-                        <field name="deliveryTownPrice"/>
-                        <field name="deliveryCountryTime"/>
-                        <field name="deliveryCountryPrice"/>
-                        <field name="productLifeTime"/>
-                        <field name="isCashless"/>
-                        <field name="isCredit"/>
-                        <field name="stockStatus"/>
-                        <field name="courierDeliveryPrices"/>
+                        <field name="product_id" invisible="1" widget="many2many_tags"/>
+                        <field name="number_of_selected_products_for_synchronization"/>
                     </group>
                 </sheet>
                 <footer>
@@ -34,7 +17,7 @@
             </form>
         </field>
     </record>
-    <record id="change_expense_sheet_action" model="ir.actions.act_window">
+    <record id="check_product_info" model="ir.actions.act_window">
         <field name="name">Product Info</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template.get_product_info_wizard</field>
