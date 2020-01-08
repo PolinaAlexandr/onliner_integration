@@ -13,14 +13,15 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
     comment = fields.Char()
     producer = fields.Char()
     importer = fields.Char()
+    serviceCenters = fields.Char()
     warranty = fields.Char()
     deliveryTownTime = fields.Char()
     deliveryTownPrice = fields.Monetary()
     deliveryCountryTime = fields.Char()
     deliveryCountryPrice = fields.Monetary()
     productLifeTime = fields.Char()
-    isCashless = fields.Selection()
-    isCredit = fields.Selection()
+    isCashless = fields.Boolean()
+    isCredit = fields.Boolean()
     stockStatus = fields.Char()
     courierDeliveryPrices = fields.Selection()
     product_count = fields.Integer(string='Products Quantity', defaul=0, compute='_compute_product_statistics')
@@ -30,7 +31,9 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
         active_id = self._context.get('active_id')
         active_ids = self._context.get('active_ids', [active_id] if active_id else [])
         results = self.env['product.template'].read_group(
-            [('product_id', 'in', active_ids)], lazy=False)
+            [('product_id', 'in', active_ids), ('sale_ok', '!=', False)],
+            ['visitor_id', 'page_id', 'url'],
+            ['visitor_id', 'page_id', 'url'], lazy=False)
         mapped_data = {}
         for result in results:
             product_info = mapped_data.get(result['product_id'][0],

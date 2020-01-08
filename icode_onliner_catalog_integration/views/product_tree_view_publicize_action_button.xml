@@ -7,7 +7,6 @@
         <field name="binding_model_id" ref="product.model_product_template"/>
         <field name="binding_view_types">list</field>
         <field name="state">code</field>
-<!--        <field name="code">if model == 'product.template.get_product_info_wizard' and env.context.get('active_ids'):-->
-<!--            env['product.template.get_product_info_wizard'].browse(env.context['active_id']).get_product_info()</field>-->
+        <field name="code"> </field>
     </record>
 </odoo>
