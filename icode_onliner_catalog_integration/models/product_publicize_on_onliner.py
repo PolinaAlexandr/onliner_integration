@@ -8,8 +8,12 @@ from odoo import fields, models, api
 class OnlinerCatalog(models.Model):
     _inherit = 'product.template'
 
-    # def publicize_on_onliner(self):
-    #
+    isCashless = fields.Boolean()
+    isCredit = fields.Boolean()
+    serviceCenters = fields.Char()
+
+    def publicize_on_onliner(self):
+        pass
     #     summary_url = 'https://b2bapi.onliner.by/positions/{}?access-token={}'
     #     headers = {'Content-Type': 'application/json'
     #     token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')

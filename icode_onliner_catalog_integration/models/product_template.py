@@ -2,8 +2,8 @@ from odoo import fields, models, api
 
 
 class IntegrationFields(models.Model):
-    _inherit = 'product.product'
+    _inherit = 'product.template'
 
-    isCashless = fields.Boolean()
-    isCredit = fields.Boolean()
-    serviceCenters = fields.Char()
+    isCashless = fields.Boolean(string='Is Cashless?')
+    isCredit = fields.Boolean(string='Is Credit?')
+    serviceCenters = fields.Char(string='Service Centers')
