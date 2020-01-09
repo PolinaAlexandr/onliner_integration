@@ -6,15 +6,16 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[1]" position="after">
-                    <field name="isCashless"/>
-                    <field name="isCredit"/>
+                <xpath expr="//form/sheet/div[1]" position="after">
+                    <div> 
+                        <label for="isCashless"/>
+                        <field name="isCashless"/>
+                    </div>
+                    <div>
+                        <label for="isCredit"/>
+                        <field name="isCredit"/>
+                    </div>
                 </xpath>
-    <!--            <xpath expr="//form" position="attributes">-->
-    <!--                <attribute name="name">Product Template</attribute>-->
-    <!--            </xpath>-->
-    <!--            <lebel for="serviceCenters" string="Service Centers" position="after"/>-->
-    <!--            <field name="serviceCenters"/>-->
             </field>
         </record>
     </data>
