@@ -8,10 +8,10 @@ class IntegrationFields(models.Model):
     is_cashless = fields.Boolean(string='Is Cashless?')
     is_credit = fields.Boolean(string='Is Credit?')
     service_centers = fields.Char(string='Service Centers')
-    delivery_town_time = fields.date()
+    delivery_town_time = fields.Date()
     delivery_town_price = fields.Monetary()
-    delivery_country_time = fields.date()
-    delivery_country_price = fields.date()
+    delivery_country_time = fields.Date()
+    delivery_country_price = fields.Monetary()
 
     delivery_country_id = fields.Many2one('res.country', 'Country',
                                           default=lambda self: self.env['res.country'].search(['code', '=', 'BY']))
