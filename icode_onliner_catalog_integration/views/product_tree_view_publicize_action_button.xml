@@ -2,35 +2,11 @@
 <odoo>
     <record id="action_onliner_catalog" model="ir.actions.server">
         <field name="name">Publicize on Onliner</field>
-        <field name="type">ir.actions.act_window</field>
+        <field name="type">ir.actions.server</field>
         <field name="res_model">product.template</field>
         <field name="binding_model_id" ref="product.model_product_template"/>
         <field name="binding_view_types">list</field>
         <field name="state">code</field>
-        <field name="code"> action = record.publicize_on_onliner()</field>
+        <field name="code"> action = records.publicize_on_onliner()</field>
     </record>
-
-<!--    <record id="onliner_product_product_template_form_view_inherit" model="ir.ui.view">-->
-<!--    <field name="name">onliner_product.product_template_form_view_inherit</field>-->
-<!--    <field name="model">product.template</field>-->
-<!--    <field name="inherit_id" ref="product.product_template_form_view"/>-->
-<!--    <field name="type">form</field>-->
-<!--    <field name="arch" type="xml">-->
-<!--        <xpath expr="//div[1]" position="inside">-->
-<!--            <div>-->
-<!--    &lt;!&ndash;                    <lebel for="isCashless" string="is Cashless" position="after"/>&ndash;&gt;-->
-<!--                <field name="isCashless"/>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--    &lt;!&ndash;                    <lebel for="isCredit" string="is Credit" position="after"/>&ndash;&gt;-->
-<!--                <field name="isCredit"/>-->
-<!--            </div>-->
-<!--        </xpath>-->
-<!--    &lt;!&ndash;            <xpath expr="//form" position="attributes">&ndash;&gt;-->
-<!--    &lt;!&ndash;                <attribute name="name">Product Template</attribute>&ndash;&gt;-->
-<!--    &lt;!&ndash;            </xpath>&ndash;&gt;-->
-<!--    &lt;!&ndash;            <lebel for="serviceCenters" string="Service Centers" position="after"/>&ndash;&gt;-->
-<!--    &lt;!&ndash;            <field name="serviceCenters"/>&ndash;&gt;-->
-<!--    </field>-->
-<!--    </record>-->
 </odoo>

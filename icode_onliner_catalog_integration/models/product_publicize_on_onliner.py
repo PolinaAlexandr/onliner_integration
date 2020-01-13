@@ -8,10 +8,6 @@ from odoo import fields, models, api
 class OnlinerCatalog(models.Model):
     _inherit = 'product.template'
 
-    isCashless = fields.Boolean()
-    isCredit = fields.Boolean()
-    serviceCenters = fields.Char()
-
     def publicize_on_onliner(self):
         pass
     #     summary_url = 'https://b2bapi.onliner.by/positions/{}?access-token={}'
@@ -28,9 +24,6 @@ class OnlinerCatalog(models.Model):
 
     # def get_product_info(self):
     #     self.ensure_one()
-    #     active_products_ids = self.env['product.template'].browse(self._context.get('active_ids'))
-    #     print(active_products_ids)
-        # country_id = self.env.ref('base.by').id  # Belarus by default
         # for product_id in active_ids:
         #     product_data = self.env.get()
         #     exporter_dict = {

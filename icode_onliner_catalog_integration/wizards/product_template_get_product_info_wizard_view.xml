@@ -6,12 +6,12 @@
             <form string="Get Product Info">
                 <sheet>
                     <group>
-                        <field name="product_id" invisible="1" widget="many2many_tags"/>
-                        <field name="number_of_selected_products_for_synchronization"/>
+                        <field name="product_id" widget="many2many_tags"/>
+<!--                        <field name="product_count"/>-->
                     </group>
                 </sheet>
                 <footer>
-                    <button string="Apply" class="btn-primary" type="object" name="publicize_on_onliner"/>
+                    <button string="Apply" class="btn-primary" type="object" name="%(icode_onliner_catalog_integration.publicize_on_onliner)d"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
