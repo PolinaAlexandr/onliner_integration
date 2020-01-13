@@ -16,9 +16,17 @@
                         <label for="is_сredit"/>
                     </div>
                 </xpath>
-                <xpath expr="//form/sheet/notebook/page[@name='sales']" position="inside">
-                    <label for="delivery_country_id" string="Delivery Country"/>
+                <xpath expr="//page[@name='sales']" position="inside">
                     <field name="delivery_country_id"/>
+                    <label for="delivery_country_id" string="Delivery Country"/>
+                </xpath>
+                <xpath expr="//page[@name='inventory']" position="inside">
+                    <group name="delivery">
+                        <field name="delivery_town_time"/>
+                        <field name="delivery_town_price"/>
+                        <field name="delivery_country_time"/>
+                        <field name="delivery_country_price"/>
+                    </group>
                 </xpath>
             </field>
         </record>
