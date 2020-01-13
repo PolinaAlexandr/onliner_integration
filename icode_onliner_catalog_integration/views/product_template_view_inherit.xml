@@ -8,12 +8,12 @@
             <field name="arch" type="xml">
                 <xpath expr="//form/sheet/div[1]" position="inside">
                     <div>
-                        <label for="isCashless"/>
-                        <field name="isCashless"/>
+                        <field name="is_сashless"/>
+                        <label for="is_сashless"/>
                     </div>
                     <div>
-                        <label for="isCredit"/>
-                        <field name="isCredit"/>
+                        <field name="is_сredit"/>
+                        <label for="is_сredit"/>
                     </div>
                 </xpath>
                 <xpath expr="//form/sheet/notebook/page[@name='sales']" position="inside">

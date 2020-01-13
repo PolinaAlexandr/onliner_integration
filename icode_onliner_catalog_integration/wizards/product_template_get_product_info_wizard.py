@@ -32,7 +32,7 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
         active_ids = self._context.get('active_ids', [active_id] if active_id else [])
         results = self.env['product.template'].read_group(
             [('product_id', 'in', active_ids), ('sale_ok', '!=', False)],
-            ['product_id'], lazy=False)
+            ['product_id'], ['product_id'], lazy=False)
         mapped_data = {}
         for result in results:
             product_info = mapped_data.get(result['product_id'][0],
@@ -42,10 +42,20 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
             if result['product_id']:
                 product_info['product_ids'].add(result['product_id'][0])
             for selected_product in self:
-                product_info = mapped_data.get(selected_product.id,
-                                               {'page_count': 0, 'product_ids': set()})
                 selected_product.product_ids = [(6, 0, product_info['product_ids'])]
                 selected_product.product_count = product_info['product_count']
+
+    def _check_required_data(self):
+        active_id = self._context.get('active_id')
+        active_ids = self._context.get('active_ids', [active_id] if active_id else [])
+        results = self.env['product.template'].read_group(
+            [('product_id', 'in', active_ids), ('sale_ok', '!=', False)],
+            ['product_id'], ['categ_id'], ['name'], ['list_price'], ['extra_description'], ['customer_info_ids'],
+            ['service_centers'], ['is_cashless'], ['is_credit'], ['inventory_quantity'], ['sale_delay'],
+            ['explotation_period'], [''],
+            ['product_id'], lazy=False)
+        mapped_data = {}
+
 
 
     # def _add_new_product(self):
