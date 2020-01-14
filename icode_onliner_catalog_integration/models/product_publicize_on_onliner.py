@@ -9,7 +9,21 @@ class OnlinerCatalog(models.Model):
     _inherit = 'product.template'
 
     def publicize_on_onliner(self):
-        pass
+        form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
+        active_id = self._context.get('active_id')
+        active_ids = self._context.get('active_ids', active_id if active_id else [])
+        # product_id = self.env['product.template'].search([('product_id', '=', active_id)]).id
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'product.template.get_product_info_wizard',
+            'view_mode': 'form',
+            'views': [(form_id, 'form')],
+            'context': {
+                'default_product_ids': active_ids,
+                'default_sale_ok': False,
+            },
+            'target': 'new'}
+
     #     summary_url = 'https://b2bapi.onliner.by/positions/{}?access-token={}'
     #     headers = {'Content-Type': 'application/json'
     #     token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
@@ -22,9 +36,8 @@ class OnlinerCatalog(models.Model):
     #     print(res_summary)
     #     return res_summary
 
-    # def get_product_info(self):
     #     self.ensure_one()
-        # for product_id in active_ids:
+        # for active_id in active_ids:
         #     product_data = self.env.get()
         #     exporter_dict = {
         #         "id": 1,

@@ -5,7 +5,12 @@
     'author': 'iCode',
     'website': 'http://icode.by',
     'depends': [
-        'product', 'base'
+        'product',
+        'base',
+        'techelectro_product',
+        'techelectro_sale',
+        'product_pricelist_prices',
+        'techelectro_stock'
     ],
     'data': [
         # 'security/ir.model.access.csv',

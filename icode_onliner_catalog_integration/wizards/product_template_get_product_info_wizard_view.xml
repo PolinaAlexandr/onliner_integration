@@ -1,17 +1,17 @@
 <odoo>
     <record model="ir.ui.view" id="product_template_get_product_info_wizard_view">
-        <field name="name">product.template.get_product_info_wizard.form.view</field>
+        <field name="name">product.template.get.product.info.wizard.form.view</field>
         <field name="model">product.template.get_product_info_wizard</field>
         <field name="arch" type="xml">
             <form string="Get Product Info">
                 <sheet>
                     <group>
-                        <field name="product_id" widget="many2many_tags"/>
+                        <field name="product_ids" widget="many2many_tags"/>
 <!--                        <field name="product_count"/>-->
                     </group>
                 </sheet>
                 <footer>
-                    <button string="Apply" class="btn-primary" type="object" name="%(icode_onliner_catalog_integration.publicize_on_onliner)d"/>
+                    <button string="Apply" class="btn-primary" type="object" name="send_data"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
@@ -21,7 +21,7 @@
         <field name="name">Product Info</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template.get_product_info_wizard</field>
-        <field name="view_id" ref="product.model_product_template"/>
+        <field name="view_id" ref="icode_onliner_catalog_integration.product_template_get_product_info_wizard_view"/>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>

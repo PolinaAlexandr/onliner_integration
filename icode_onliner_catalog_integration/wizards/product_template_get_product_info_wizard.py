@@ -4,28 +4,27 @@ from odoo import models, fields, api
 class ProductTemplateGetProductInfoWizard(models.TransientModel):
     _name = 'product.template.get_product_info_wizard'
 
-    product_category = fields.Char()
-    vendor = fields.Char()
-    model = fields.Char()
-    price = fields.Monetary()
-    currency = fields.Many2one('')
-    comment = fields.Char()
-    producer = fields.Char()
-    importer = fields.Char()
-    serviceCenters = fields.Char()
-    warranty = fields.Char()
-    deliveryTownTime = fields.Char()
-    deliveryTownPrice = fields.Monetary()
-    deliveryCountryTime = fields.Char()
-    deliveryCountryPrice = fields.Monetary()
-    productLifeTime = fields.Char()
-    isCashless = fields.Boolean()
-    isCredit = fields.Boolean()
-    stockStatus = fields.Char()
-    courierDeliveryPrices = fields.Selection()
-    product_ids = fields.Many2many('product.template', string='Selected Products',
-                                   compute='_compute_product_statistics')
-    product_count = fields.Integer(string='Products Quantity', defaul=0, compute='_compute_product_statistics')
+    # product_category = fields.Char()
+    # vendor = fields.Char()
+    # model = fields.Char()
+    # price = fields.Monetary()
+    # currency = fields.Many2one('')
+    # comment = fields.Char()
+    # producer = fields.Char()
+    # importer = fields.Char()
+    # serviceCenters = fields.Char()
+    # warranty = fields.Char()
+    # deliveryTownTime = fields.Char()
+    # deliveryTownPrice = fields.Monetary()
+    # deliveryCountryTime = fields.Char()
+    # deliveryCountryPrice = fields.Monetary()
+    # productLifeTime = fields.Char()
+    # isCashless = fields.Boolean()
+    # isCredit = fields.Boolean()
+    # stockStatus = fields.Char()
+    # courierDeliveryPrices = fields.Selection()
+    product_ids = fields.Many2many('product.template', string='Selected Products')
+    product_count = fields.Integer(string='Products Quantity', default=0)
 
     def _compute_product_statistics(self):
         active_id = self._context.get('active_id')
@@ -52,11 +51,20 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
             [('product_id', 'in', active_ids), ('sale_ok', '!=', False)],
             ['product_id'], ['categ_id'], ['name'], ['list_price'], ['extra_description'], ['customer_info_ids'],
             ['service_centers'], ['is_cashless'], ['is_credit'], ['inventory_quantity'], ['sale_delay'],
-            ['explotation_period'], [''],
+            ['explotation_period'], ['delivery_town_time'], ['delivery_town_price'], ['delivery_country_time'],
+            ['delivery_country_price'],
             ['product_id'], lazy=False)
         mapped_data = {}
+        for result in results:
+            product_required_fields = mapped_data.get(result)
+
+    def send_data(self):
+        pass
 
 
+    #
+    # def open_wizard(self):
+    #
 
     # def _add_new_product(self):
     #     pass

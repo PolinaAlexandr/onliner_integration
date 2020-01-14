@@ -3,10 +3,10 @@
     <record id="action_onliner_catalog" model="ir.actions.server">
         <field name="name">Publicize on Onliner</field>
         <field name="type">ir.actions.server</field>
-        <field name="res_model">product.template</field>
+         <field name="model_id" ref="product.model_product_template"/>
         <field name="binding_model_id" ref="product.model_product_template"/>
         <field name="binding_view_types">list</field>
         <field name="state">code</field>
-        <field name="code"> action = records.publicize_on_onliner()</field>
+        <field name="code"> action = record.publicize_on_onliner()</field>
     </record>
 </odoo>
