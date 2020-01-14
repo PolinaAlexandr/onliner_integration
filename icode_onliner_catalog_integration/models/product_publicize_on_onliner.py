@@ -11,8 +11,10 @@ class OnlinerCatalog(models.Model):
     def publicize_on_onliner(self):
         form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
         active_id = self._context.get('active_id')
-        active_ids = self._context.get('active_ids', active_id if active_id else [])
-        # product_id = self.env['product.template'].search([('product_id', '=', active_id)]).id
+        active_ids = self._context.get('active_ids', [active_id] if active_id else [])
+        for active_id in active_ids:
+            names = active_id.mapped('name')
+
         return {
             'type': 'ir.actions.act_window',
             'res_model': 'product.template.get_product_info_wizard',
@@ -20,21 +22,9 @@ class OnlinerCatalog(models.Model):
             'views': [(form_id, 'form')],
             'context': {
                 'default_product_ids': active_ids,
-                'default_sale_ok': False,
+                'default_name': names
             },
             'target': 'new'}
-
-    #     summary_url = 'https://b2bapi.onliner.by/positions/{}?access-token={}'
-    #     headers = {'Content-Type': 'application/json'
-    #     token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
-    #     # response_egr = requests.get(egr_url.format(unp, token))
-    #     # res_egr = json.loads(response_egr.content.decode('utf-8'))
-    #     response_summary = requests.get(summary_url.format(unp, token))
-    #     res_summary = json.loads(response_summary.content.decode('utf-8'))
-    #     # print(res_egr)
-    #     # return res_egr
-    #     print(res_summary)
-    #     return res_summary
 
     #     self.ensure_one()
         # for active_id in active_ids:
