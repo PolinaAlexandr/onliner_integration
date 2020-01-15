@@ -12,6 +12,7 @@ class OnlinerCatalog(models.Model):
         form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
         active_id = self._context.get('active_id')
         active_ids = self._context.get('active_ids', [active_id] if active_id else [])
+        product_count = len(active_ids)
         Product = self.env['product.template']
         product = Product.browse(active_id)
         products = Product.browse(active_ids)
@@ -19,7 +20,7 @@ class OnlinerCatalog(models.Model):
         for product in products:
             product_info = {
                 "id": product.id,
-                "category": product.categ_id,
+                "category": product.categ_id.name,
                 "vendor": product.producer_name.id,
                 "model": product.name,
                 "price": product.list_price,
@@ -28,6 +29,7 @@ class OnlinerCatalog(models.Model):
                 "producer": "Foxconn,No.2,2nd Donghuan Road,10th Yousong Industrial District",
                 "importer": product.customer_info_ids,
                 "serviceCenters": product.service_centers,
+                # "warranty": product.self._fields['warranty'],
                 "warranty": product.warranty,
                 "deliveryTownTime": product.delivery_town_time,
                 "deliveryTownPrice": product.delivery_town_price,
@@ -55,7 +57,8 @@ class OnlinerCatalog(models.Model):
             'views': [(form_id, 'form')],
             'context': {
                 'default_product_ids': active_ids,
-                'default_names': product_info
+                'default_names': product_info,
+                'default_product_count': product_count,
             },
             'target': 'new'}
 
