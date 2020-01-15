@@ -15,4 +15,6 @@ class ProductTemplateIntegrationFields(models.Model):
     delivery_country_price = fields.Monetary(currency_field='currency_id')
     delivery_country_id = fields.Many2one('res.country', string='Country',
                                           default=lambda self: self.env.ref('base.by').id)
+    warranty = fields.Selection([('1', 'No Warranty'), ('2', '1 Year'), ('3', '2 Years')], string='Warranty',
+                                default='2')
     # courierDeliveryPrices = fields.Many2many('product.template'
