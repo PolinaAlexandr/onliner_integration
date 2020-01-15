@@ -10,8 +10,22 @@ class OnlinerCatalog(models.Model):
 
     def publicize_on_onliner(self):
         form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
-        self.active_id = self._context.get('active_id')
-        self.active_ids = self._context.get('active_ids', [self.active_id] if self.active_id else [])
+        active_id = self._context.get('active_id')
+        active_ids = self._context.get('active_ids', [active_id] if active_id else [])
+
+        invoiced_lines = request.env['account.move.line'].sudo().search(
+            [('move_id', 'in', order.invoice_ids.ids), ('move_id.invoice_payment_state', '=', 'paid')])
+        products = invoiced_lines.mapped('product_id') | order.order_line.filtered(
+            lambda r: not r.price_subtotal).mapped('product_id')
+
+            # in that case, we should add all download links to the products
+            # since there is nothing to pay, so we shouldn't wait for an invoice
+        products = order.order_line.mapped('product_id')
+
+        product_list = self.env['product.template'].browse(self._context.get('active_ids')).filtered(
+            self.product_id, self.member_price)        # for product in products:
+        # res = products.mapped('product_id')
+        # products = self.mapped('product_ids')
         # for active_id in active_ids:
         # names = self.active_ids.mapped('product_ids')
 
@@ -21,8 +35,8 @@ class OnlinerCatalog(models.Model):
             'view_mode': 'form',
             'views': [(form_id, 'form')],
             'context': {
-                'default_product_ids': self.active_ids,
-                # 'default_names': names
+                'default_product_ids': active_ids,
+                'default_names': products
             },
             'target': 'new'}
 
