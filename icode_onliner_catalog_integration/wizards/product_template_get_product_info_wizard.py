@@ -24,7 +24,7 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
     # stockStatus = fields.Char()
     # courierDeliveryPrices = fields.Selection()
     product_ids = fields.Many2many('product.template', string='Selected Products')
-    product_count = fields.Integer(string='Products Quantity', default=0)
+    names = fields.Char(string='Names')
 
     # def _compute_product_statistics(self):
     #     active_id = self._context.get('active_id')

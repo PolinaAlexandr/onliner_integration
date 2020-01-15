@@ -10,10 +10,10 @@ class OnlinerCatalog(models.Model):
 
     def publicize_on_onliner(self):
         form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
-        active_id = self._context.get('active_id')
-        active_ids = self._context.get('active_ids', [active_id] if active_id else [])
-        for active_id in active_ids:
-            names = active_id.mapped('name')
+        self.active_id = self._context.get('active_id')
+        self.active_ids = self._context.get('active_ids', [self.active_id] if self.active_id else [])
+        # for active_id in active_ids:
+        # names = self.active_ids.mapped('product_ids')
 
         return {
             'type': 'ir.actions.act_window',
@@ -21,14 +21,13 @@ class OnlinerCatalog(models.Model):
             'view_mode': 'form',
             'views': [(form_id, 'form')],
             'context': {
-                'default_product_ids': active_ids,
-                'default_name': names
+                'default_product_ids': self.active_ids,
+                # 'default_names': names
             },
             'target': 'new'}
 
     #     self.ensure_one()
         # for active_id in active_ids:
-        #     product_data = self.env.get()
         #     exporter_dict = {
         #         "id": 1,
         #         "category": "MP3-плееры",
