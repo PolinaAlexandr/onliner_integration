@@ -8,6 +8,7 @@
                     <group>
                         <field name="product_ids" widget="many2many_tags"/>
 <!--                        <field name="product_count"/>-->
+<!--                        TODO добавить все поля с 'дефолтной' невидимомтью благодаря домейну также поветись дефолт в модели продукта -->
                         <field name="names"/>
                     </group>
                 </sheet>

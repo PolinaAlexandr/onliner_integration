@@ -17,6 +17,7 @@ class ProductTemplateIntegrationFields(models.Model):
                                           default=lambda self: self.env.ref('base.by').id)
     warranty = fields.Selection([('1', 'No Warranty'), ('2', '1 Year'), ('3', '2 Years')], string='Warranty',
                                 default='2')
+    # TODO добавить регионы доставки возможно в фомате м2м поля или же selection
     # courierDeliveryPrices = fields.Many2many('product.template', string='Regions')
     # delivery_regions: {
     #
