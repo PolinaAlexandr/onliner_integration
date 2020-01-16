@@ -1,7 +1,6 @@
 import json
 import requests
 
-from requests import Session
 from odoo import fields, models, api
 
 
@@ -12,32 +11,51 @@ class OnlinerCatalog(models.Model):
         form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
         active_id = self._context.get('active_id')
         active_ids = self._context.get('active_ids', [active_id] if active_id else [])
-        product_count = len(active_ids)
         Product = self.env['product.template']
+        # product_count = len(active_ids)
         product = Product.browse(active_id)
         products = Product.browse(active_ids)
         product_info = {}
+        data = {}
         for product in products:
+            id = product.id
+            category = product.categ_id.name
+            vendor = product.producer_name.id
+            importer = product.customer_info_ids.ids
+            model = product.name
+            price = product.list_price
+            currency = "BYN"
+            comment = product.extra_description
+            serviceCenters = product.service_centers
+            deliveryTownTime = product.delivery_town_time
+            deliveryTownPrice = product.delivery_town_price
+            deliveryCountryTime = product.delivery_country_time
+            deliveryCountryPrice = product.delivery_country_price
+            productLifeTime = product.exploitation_period
+            isCashless = product.is_cashless
+            isCredit = product.is_credit
+
             product_info = {
-                "id": product.id,
-                "category": product.categ_id.name,
-                "vendor": product.producer_name.id,
-                "model": product.name,
-                "price": product.list_price,
-                "currency": "BYN",
-                "comment": product.extra_description,
+                "id": id,
+                "category": category,
+                "vendor": vendor,
+                "model": model,
+                "price": price,
+                "currency": currency,
+                "comment": comment,
                 "producer": "Foxconn,No.2,2nd Donghuan Road,10th Yousong Industrial District",
-                "importer": product.customer_info_ids,
-                "serviceCenters": product.service_centers,
-                # "warranty": product.self._fields['warranty'],
-                "warranty": product.warranty,
-                "deliveryTownTime": product.delivery_town_time,
-                "deliveryTownPrice": product.delivery_town_price,
-                "deliveryCountryTime": product.delivery_country_time,
-                "deliveryCountryPrice": product.delivery_country_price,
-                "productLifeTime": product.exploitation_period,
-                "isCashless": product.is_cashless,
-                "isCredit": product.is_credit,
+                # "importer": product.customer_info_ids.ids,
+                "importer": product.mapped('customer_info_ids'),
+                "serviceCenters": serviceCenters,
+                "warranty": product._fields['warranty'],
+                # "warranty": product.warranty,
+                "deliveryTownTime": deliveryTownTime,
+                "deliveryTownPrice": deliveryTownPrice,
+                "deliveryCountryTime": deliveryCountryTime,
+                "deliveryCountryPrice": deliveryCountryPrice,
+                "productLifeTime": productLifeTime,
+                "isCashless": isCashless,
+                "isCredit": isCredit,
                 "stockStatus": "in_stock",
                 "courierDeliveryPrices": {
                     "region-1": {
@@ -49,6 +67,8 @@ class OnlinerCatalog(models.Model):
                     }
                 }
             }
+
+            data = {}
         
         return {
             'type': 'ir.actions.act_window',
@@ -58,7 +78,7 @@ class OnlinerCatalog(models.Model):
             'context': {
                 'default_product_ids': active_ids,
                 'default_names': product_info,
-                'default_product_count': product_count,
+                # 'default_product_count': product_count,
             },
             'target': 'new'}
 
