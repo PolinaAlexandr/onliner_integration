@@ -1,5 +1,6 @@
 import json
 import requests
+import random
 
 from odoo import fields, models, api
 
@@ -12,11 +13,12 @@ class OnlinerCatalog(models.Model):
         active_id = self._context.get('active_id')
         active_ids = self._context.get('active_ids', [active_id] if active_id else [])
         Product = self.env['product.template']
-        # product_count = len(active_ids)
         product = Product.browse(active_id)
         products = Product.browse(active_ids)
         product_info = {}
+        # product.id = {}
         data = {}
+        # nums = random.randint(0, 100)
         for product in products:
             id = product.id
             category = product.categ_id.name
@@ -69,7 +71,7 @@ class OnlinerCatalog(models.Model):
                 }
             }
             # TODO добавить цикл обработки словарей с данными в качестве ключей к объекту data в "родительском" словаре data
-            # TODO обойти при этом проблему перезаписи значения с идентичным именем
+            # TODO обойти при этом проблему перезаписи значения с идентичным именем. Варивнт форматирования названия(вероятнее всего уникальный ID каждого продукта)
             data = {}
         
         return {
@@ -79,7 +81,7 @@ class OnlinerCatalog(models.Model):
             'views': [(form_id, 'form')],
             'context': {
                 'default_product_ids': active_ids,
-                # 'default_names': product_info,
+                'default_names': product_info,
                 # 'default_product_count': product_count,
             },
             'target': 'new'}
@@ -92,7 +94,7 @@ class OnlinerCatalog(models.Model):
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': token}
-            request = requests.patch(url, data)
+            request = requests.patch(url, data, headers=header)
         #     # res_egr = json.loads(response_egr.content.decode('utf-8'))
         #     response_summary = requests.get(summary_url.format(unp, token))
         #     res_summary = json.loads(response_summary.content.decode('utf-8'))
