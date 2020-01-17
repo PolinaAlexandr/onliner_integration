@@ -16,11 +16,10 @@ class OnlinerCatalog(models.Model):
         product = Product.browse(active_id)
         products = Product.browse(active_ids)
         product_info = {}
-        # product.id = {}
         data = {}
-        # nums = random.randint(0, 100)
+        nums = random.randint(0, 1000)
         for product in products:
-            id = product.id
+            product_id = product.id
             category = product.categ_id.name
             vendor = product.producer_name.id
             importer = product.customer_info_ids
@@ -29,6 +28,11 @@ class OnlinerCatalog(models.Model):
             currency = "BYN"
             comment = product.extra_description
             serviceCenters = product.service_centers
+            # w = product.warranry
+            warranty = product._fields['warranty'].selection #list
+            # warranty1 = [i for i in warranty if i == w] #list comprehention
+            # warranty12 = len(warranty)
+
             deliveryTownTime = product.delivery_town_time
             deliveryTownPrice = product.delivery_town_price
             deliveryCountryTime = product.delivery_country_time
@@ -39,7 +43,7 @@ class OnlinerCatalog(models.Model):
             # if importer.mapped('customer_info_ids').id == []:
 
             product_info = {
-                "id": id,
+                "id": product_id,
                 "category": category,
                 "vendor": vendor,
                 "model": model,
@@ -50,8 +54,9 @@ class OnlinerCatalog(models.Model):
                 # "importer": product.customer_info_ids.ids,
                 "importer": product.mapped('customer_info_ids'),
                 "serviceCenters": serviceCenters,
-                "warranty": product._fields['warranty'],
-                # "warranty": product.warranty,
+                # "warranty": product._fields['warranty'].type == 'selection',
+                # "warranty": warranty,
+                "warranty1": [i for i in warranty if i[0] == product.warranty][0][1],
                 "deliveryTownTime": deliveryTownTime,
                 "deliveryTownPrice": deliveryTownPrice,
                 "deliveryCountryTime": deliveryCountryTime,
@@ -70,10 +75,10 @@ class OnlinerCatalog(models.Model):
                     }
                 }
             }
+            data.update(product_info)
             # TODO добавить цикл обработки словарей с данными в качестве ключей к объекту data в "родительском" словаре data
             # TODO обойти при этом проблему перезаписи значения с идентичным именем. Варивнт форматирования названия(вероятнее всего уникальный ID каждого продукта)
-            data = {}
-        
+
         return {
             'type': 'ir.actions.act_window',
             'res_model': 'product.template.get_product_info_wizard',
@@ -86,20 +91,11 @@ class OnlinerCatalog(models.Model):
             },
             'target': 'new'}
 
-    def form_request(self, data):
-
+    def form_request(self, data, params):
             url = "https://b2bapi.onliner.by/pricelists"
             token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
             header = {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': token}
-            request = requests.patch(url, data, headers=header)
-        #     # res_egr = json.loads(response_egr.content.decode('utf-8'))
-        #     response_summary = requests.get(summary_url.format(unp, token))
-        #     res_summary = json.loads(response_summary.content.decode('utf-8'))
-        #     # print(res_egr)
-        #     # return res_egr
-        #     print(res_summary)
-        #     return res_summary
-
+            request = requests.put(url, data, headers=header)
