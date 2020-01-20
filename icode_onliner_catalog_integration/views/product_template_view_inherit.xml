@@ -20,6 +20,7 @@
                 </xpath>
                 <xpath expr="//page[@name='sales']" position="inside">
                     <group name="onliner_delivery_country">
+                        <field name="importer"/>
                         <field name="warranty"/>
                         <field name="delivery_country_id"/>
                     </group>

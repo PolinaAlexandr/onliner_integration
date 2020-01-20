@@ -54,8 +54,6 @@ class OnlinerCatalog(models.Model):
                 # "importer": product.customer_info_ids.ids,
                 "importer": product.mapped('customer_info_ids'),
                 "serviceCenters": serviceCenters,
-                # "warranty": product._fields['warranty'].type == 'selection',
-                # "warranty": warranty,
                 "warranty1": [i for i in warranty if i[0] == product.warranty][0][1],
                 "deliveryTownTime": deliveryTownTime,
                 "deliveryTownPrice": deliveryTownPrice,

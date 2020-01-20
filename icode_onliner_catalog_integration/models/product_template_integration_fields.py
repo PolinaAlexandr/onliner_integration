@@ -4,6 +4,7 @@ from odoo import fields, models, api
 class ProductTemplateIntegrationFields(models.Model):
     _inherit = 'product.template'
 
+    importer = fields.Many2one('res.company', 'Company')
     producer_name = fields.Many2one('res.company', 'Company')
     is_cashless = fields.Boolean(string='Is Cashless?')
     is_credit = fields.Boolean(string='Is Credit?')
