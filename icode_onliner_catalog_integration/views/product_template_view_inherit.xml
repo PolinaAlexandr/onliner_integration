@@ -23,6 +23,10 @@
                         <field name="vendor"/>
                         <field name="warranty"/>
                         <field name="delivery_country_id"/>
+                        <field name="regions"/>
+                        <field name="terms_of_delivery"/>
+<!--                        <field name="custom_term" attrs="{'invisible':[('terms_of_delivery', '=', 'none'), ('terms_of_delivery', '=', 'default')]}"/>-->
+<!--                        <field name="courier_delivery_prices" widget="many2many_tags"/>-->
                     </group>
                 </xpath>
                 <xpath expr="//page[@name='inventory']" position="inside">

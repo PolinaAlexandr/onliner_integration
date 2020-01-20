@@ -8,6 +8,8 @@ from odoo import fields, models, api
 class OnlinerCatalog(models.Model):
     _inherit = 'product.template'
 
+    # TODO открывать поля чьи значения не заданы/имеют не подходящие данные на форме визарда и при вводе напрямую записывать значения в словарь
+
     def publicize_on_onliner(self):
         form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
         active_id = self._context.get('active_id')
@@ -17,15 +19,15 @@ class OnlinerCatalog(models.Model):
         products = Product.browse(active_ids)
         product_info = {}
         data = []
-        nums = random.randint(0, 1000)
+        # nums = random.randint(0, 1000)
         for product in products:
             product_id = product.id
             category = product.categ_id.name
-            # vendor = product.producer_name.id
+            vendor = product.producer.name
             importer = product.importer.name
             model = product.name
             price = product.list_price
-            currency = "BYN"
+            currency = product.currency_id.name
             producer = product.producer.name
             comment = product.extra_description
             service_centers = product.service_centers
@@ -37,15 +39,17 @@ class OnlinerCatalog(models.Model):
             product_life_time = product.exploitation_period
             is_cashless = product.is_cashless
             is_credit = product.is_credit
-            # if importer.mapped('customer_info_ids').id == []:
+
+            # if importer.mapped('customer_info_ids').id == ():
+                # importer =
 
             product_info = {
                 "id": product_id,
                 "category": category,
-                # "vendor": vendor,
+                "vendor": vendor,
                 "model": model,
                 "price": price,
-                "currency": currency,
+                "currency": 'BYN',
                 "comment": comment,
                 "producer": producer,
                 "importer": importer,
@@ -69,21 +73,23 @@ class OnlinerCatalog(models.Model):
                     }
                 }
             }
-            # data
-            # TODO добавить цикл обработки словарей с данными в качестве ключей к объекту data в "родительском" словаре data
-            # TODO обойти при этом проблему перезаписи значения с идентичным именем. Варивнт форматирования названия(вероятнее всего уникальный ID каждого продукта)
 
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'product.template.get_product_info_wizard',
-            'view_mode': 'form',
-            'views': [(form_id, 'form')],
-            'context': {
-                'default_product_ids': active_ids,
-                'default_names': product_info,
-                # 'default_product_count': product_count,
-            },
-            'target': 'new'}
+            data.append(product_info)
+
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'product.template.get_product_info_wizard',
+                'view_mode': 'form',
+                'views': [(form_id, 'form')],
+                'context': {
+                    'default_product_ids': active_ids,
+                    'default_names': product_info,
+                    'default_importer': importer,
+                    'default_currency': currency,
+                    'default_product_life_time': product_life_time,
+                    # 'default_product_count': product_count,
+                },
+                'target': 'new'}
 
     # def form_request(self, data, params):
     #         url = "https://b2bapi.onliner.by/pricelists"
