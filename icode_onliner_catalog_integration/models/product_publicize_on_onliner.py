@@ -40,8 +40,7 @@ class OnlinerCatalog(models.Model):
             is_cashless = product.is_cashless
             is_credit = product.is_credit
 
-            # if importer.mapped('customer_info_ids').id == ():
-                # importer =
+            # for i in product.mapped(i) == [] or () or False or 0 :
 
             product_info = {
                 "id": product_id,
@@ -84,12 +83,14 @@ class OnlinerCatalog(models.Model):
                 'context': {
                     'default_product_ids': active_ids,
                     'default_names': product_info,
-                    'default_importer': importer,
-                    'default_currency': currency,
-                    'default_product_life_time': product_life_time,
+                    # 'default_importer': importer,
+                    # 'default_currency': currency,
+                    # 'default_product_life_time': product_life_time,
                     # 'default_product_count': product_count,
                 },
                 'target': 'new'}
+
+
 
     # def form_request(self, data, params):
     #         url = "https://b2bapi.onliner.by/pricelists"

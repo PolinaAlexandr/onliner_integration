@@ -12,7 +12,7 @@ class ProductTemplateIntegrationFields(models.Model):
     service_centers = fields.Char(string='Service Centers')
     delivery_country_id = fields.Many2one('res.country', string='Country',
                                           default=lambda self: self.env.ref('base.by').id)
-    currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.ref('base.by').id.currency_id)
+    # currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.ref('base.by').id.currency_id)
     delivery_town_time = fields.Date()
     delivery_town_price = fields.Monetary(currency_field='currency_id')
     delivery_country_time = fields.Date()
@@ -22,13 +22,12 @@ class ProductTemplateIntegrationFields(models.Model):
     # regions = fields.Selection([('1', 'Minsk region'), ('2', 'Grodno region'), ('3', 'Vitebsk region'),
     #                             ('4', 'Mogilev region'), ('5', 'Brest region'), ('6', "Gomel' region")],
     #                            string='Delivery Regions')
-    terms_of_delivery = fields.Selection([('1', 'default'), ('2', 'none'), ('3', 'custom')])
+    # terms_of_delivery = fields.Selection([('1', 'default'), ('2', 'none'), ('3', 'custom')])
     # custom_term = fields.Monetary(currency_field='currency_id', domain=[('terms_of_delivery', '=', 'custom')])
-    # TODO добавить регионы доставки возможно в фомате м2м поля или же selection
-    # courier_delivery_prices = fields.Many2many('res.country.state', 'regions_ids', string='Regions')
-    # region1 = fields.Boolean(string='Minsk region')
-    # region2 = fields.Boolean(string='Grodno region')
-    # region3 = fields.Boolean(string='Vitebsk region')
-    # region4 = fields.Boolean(string='Mogilev region')
-    # region5 = fields.Boolean(string='Brest region')
-    # region6 = fields.Boolean(string="Gomel' region")
+    courier_delivery_prices = fields.One2many('res.country.state', 'state_id')
+
+
+class ResCountryStateInverseIntegrationFields(models.Model):
+    _inherit = 'res.country.state'
+
+    state_id = fields.Many2one('res.country.state')

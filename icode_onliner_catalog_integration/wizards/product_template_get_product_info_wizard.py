@@ -14,6 +14,7 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
     # importer = fields.Char()
     # serviceCenters = fields.Char()
     # warranty = fields.Char()
+    # warranty_issue = fields.Boolean()
     # deliveryTownTime = fields.Char()
     # deliveryTownPrice = fields.Monetary()
     # deliveryCountryTime = fields.Char()
