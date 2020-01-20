@@ -16,52 +16,48 @@ class OnlinerCatalog(models.Model):
         product = Product.browse(active_id)
         products = Product.browse(active_ids)
         product_info = {}
-        data = {}
+        data = []
         nums = random.randint(0, 1000)
         for product in products:
             product_id = product.id
             category = product.categ_id.name
-            vendor = product.producer_name.id
-            importer = product.customer_info_ids
+            # vendor = product.producer_name.id
+            importer = product.importer.name
             model = product.name
-            price = product.mapped('list_price')
+            price = product.list_price
             currency = "BYN"
+            producer = product.producer.name
             comment = product.extra_description
-            serviceCenters = product.service_centers
-            # w = product.warranry
+            service_centers = product.service_centers
             warranty = product._fields['warranty'].selection #list
-            # warranty1 = [i for i in warranty if i == w] #list comprehention
-            # warranty12 = len(warranty)
-
-            deliveryTownTime = product.delivery_town_time
-            deliveryTownPrice = product.delivery_town_price
-            deliveryCountryTime = product.delivery_country_time
-            deliveryCountryPrice = product.delivery_country_price
-            productLifeTime = product.exploitation_period
-            isCashless = product.is_cashless
-            isCredit = product.is_credit
+            delivery_town_time = product.delivery_town_time
+            delivery_town_price = product.delivery_town_price
+            delivery_country_time = product.delivery_country_time
+            delivery_country_price = product.delivery_country_price
+            product_life_time = product.exploitation_period
+            is_cashless = product.is_cashless
+            is_credit = product.is_credit
             # if importer.mapped('customer_info_ids').id == []:
 
             product_info = {
                 "id": product_id,
                 "category": category,
-                "vendor": vendor,
+                # "vendor": vendor,
                 "model": model,
                 "price": price,
                 "currency": currency,
                 "comment": comment,
-                "producer": "Foxconn,No.2,2nd Donghuan Road,10th Yousong Industrial District",
-                # "importer": product.customer_info_ids.ids,
-                "importer": product.mapped('customer_info_ids'),
-                "serviceCenters": serviceCenters,
-                "warranty1": [i for i in warranty if i[0] == product.warranty][0][1],
-                "deliveryTownTime": deliveryTownTime,
-                "deliveryTownPrice": deliveryTownPrice,
-                "deliveryCountryTime": deliveryCountryTime,
-                "deliveryCountryPrice": deliveryCountryPrice,
-                "productLifeTime": productLifeTime,
-                "isCashless": isCashless,
-                "isCredit": isCredit,
+                "producer": producer,
+                "importer": importer,
+                "serviceCenters": service_centers,
+                "warranty": [i for i in warranty if i[0] == product.warranty][0][1],
+                "deliveryTownTime": delivery_town_time,
+                "deliveryTownPrice": delivery_town_price,
+                "deliveryCountryTime": delivery_country_time,
+                "deliveryCountryPrice": delivery_country_price,
+                "productLifeTime": product_life_time,
+                "isCashless": is_cashless,
+                "isCredit": is_credit,
                 "stockStatus": "in_stock",
                 "courierDeliveryPrices": {
                     "region-1": {
@@ -73,7 +69,7 @@ class OnlinerCatalog(models.Model):
                     }
                 }
             }
-            data.update(product_info)
+            # data
             # TODO добавить цикл обработки словарей с данными в качестве ключей к объекту data в "родительском" словаре data
             # TODO обойти при этом проблему перезаписи значения с идентичным именем. Варивнт форматирования названия(вероятнее всего уникальный ID каждого продукта)
 
@@ -89,11 +85,11 @@ class OnlinerCatalog(models.Model):
             },
             'target': 'new'}
 
-    def form_request(self, data, params):
-            url = "https://b2bapi.onliner.by/pricelists"
-            token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
-            header = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': token}
-            request = requests.put(url, data, headers=header)
+    # def form_request(self, data, params):
+    #         url = "https://b2bapi.onliner.by/pricelists"
+    #         token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
+    #         header = {
+    #             'Accept': 'application/json',
+    #             'Content-Type': 'application/json',
+    #             'Authorization': token}
+    #         request = requests.put(url, data, headers=header)
