@@ -7,7 +7,6 @@
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@name='options']" position="inside">
-<!--                    <group name="onliner_delivery_payment_params">-->
                     <div>
                         <field name="is_cashless"/>
                         <label for="is_cashless"/>
@@ -16,11 +15,9 @@
                         <field name="is_credit"/>
                         <label for="is_credit"/>
                     </div>
-<!--                    </group>-->
                 </xpath>
                 <xpath expr="//page[@name='sales']" position="inside">
                     <group name="onliner_delivery_country">
-<!--                        <field name="currency_id"/>-->
                         <field name="importer"/>
                         <field name="producer"/>
                         <field name="vendor"/>
