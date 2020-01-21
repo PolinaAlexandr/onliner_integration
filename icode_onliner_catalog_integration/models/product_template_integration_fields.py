@@ -25,7 +25,8 @@ class ResCountryStateInverseIntegrationFields(models.Model):
     _name = 'product.template.onliner.line'
 
     product_id = fields.Many2one('product.template')
-    # name = fields.Char(related='states.name')
+    country_id = fields.Many2one('res.country', string='Country', default=lambda self: self.env.ref('base.by').id)
+    region = fields.Many2one('res.country.state')
     # code = fields.Char(related='states.name.code')
 
 
