@@ -27,10 +27,21 @@ class ResCountryStateInverseIntegrationFields(models.Model):
     product_id = fields.Many2one('product.template')
     country_id = fields.Many2one('res.country', string='Country', default=lambda self: self.env.ref('base.by').id)
     region = fields.Many2one('res.country.state', domain=[('country_id.name', '=', 'Belarus')])
-    # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ,
-    #  к каждому из них выставить список/selection поле/м2о с выбором типов доставки,
-    #  при выборе 'custom' открывать (visibility вероятнее всего)
-    #  поле для ввода цены на доставкую.
+
+    # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
+    #  (варинат м20 лишает возможности выбора нескольких регионов)
+    # TODO для каждого из указанных регионов предоставить варианты стоимости доставки
+    #  (type: custom, free, default, no )
+    # TODO type:custom : при выборе данного типа должно открываться окно для ввода цены "amount(Monetary)"
+    # TODO type:free : простая запись значения
+    # TODO type:default :
+    #  величина определяется со стороны онлайнера и имеет денежный эквивалент только на их ресурсе
+    # TODO type:no :
+    #  (вероятнее всего служит индикатором наличия региона в тарифной сети)
+    # TODO Вопросы к решению:
+    #  1) тип поля отвечающего за регионы доставки: необходима опция выбора от одного до шести(изначально) регионов
+    #  (возможность насширения региональнойй сети)(res.config.settings)
+    #  2) Цены доставки в рамках областных центрах
     # code = fields.Char(related='states.name.code')
 
 
