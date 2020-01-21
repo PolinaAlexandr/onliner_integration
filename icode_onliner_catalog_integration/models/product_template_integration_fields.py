@@ -27,6 +27,10 @@ class ResCountryStateInverseIntegrationFields(models.Model):
     product_id = fields.Many2one('product.template')
     country_id = fields.Many2one('res.country', string='Country', default=lambda self: self.env.ref('base.by').id)
     region = fields.Many2one('res.country.state')
+    # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ,
+    #  к каждому из них выставить список/selection поле/м2о с выбором типов доставки,
+    #  при выборе 'custom' открывать (visibility вероятнее всего)
+    #  поле для ввода цены на доставкую.
     # code = fields.Char(related='states.name.code')
 
 
