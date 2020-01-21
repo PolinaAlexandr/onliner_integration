@@ -18,15 +18,15 @@ class ProductTemplateIntegrationFields(models.Model):
     delivery_country_price = fields.Monetary(currency_field='currency_id', )
     warranty = fields.Selection([('1', 'No Warranty'), ('2', '12 months'), ('3', '24 month')], string='Warranty',
                                 default='2')
-    courier_delivery_prices = fields.One2many('res.country.state', 'state')
-    # states = fields.One2many('product.template.delivery_country_id.state_ids')
-
-    # state_code = fields.Char(related='courier_delivery_prices.code')
-
-    # name = fields.Char()
+    courier_delivery_prices = fields.One2many('product.template.onliner.line', 'product_id')
 
 
 class ResCountryStateInverseIntegrationFields(models.Model):
-    _inherit = 'res.country.state'
-    state = fields.Many2one('res.country.state')
-    code = fields.Char(related='country_id')
+    _name = 'product.template.onliner.line'
+
+    product_id = fields.Many2one('product.template')
+    # name = fields.Char(related='states.name')
+    # code = fields.Char(related='states.name.code')
+
+
+
