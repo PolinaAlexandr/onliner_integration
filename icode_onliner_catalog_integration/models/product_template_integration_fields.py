@@ -18,16 +18,21 @@ class ProductTemplateIntegrationFields(models.Model):
     delivery_country_price = fields.Monetary(currency_field='currency_id', )
     warranty = fields.Selection([('1', 'No Warranty'), ('2', '12 months'), ('3', '24 month')], string='Warranty',
                                 default='2')
-    courier_delivery_prices = fields.One2many('product.template.onliner.line', 'product_id')
+    courier_delivery_price = fields.One2many('product.template.onliner.line', 'product_id')
 
 
 class ResCountryStateInverseIntegrationFields(models.Model):
     _name = 'product.template.onliner.line'
 
-    product_id = fields.Many2one('product.template')
-
-    # country_id = fields.Many2one('res.country', string='Country', default=lambda self: self.env.ref('base.by').id)
-    # region = fields.Many2one('res.country.state', domain=[('country_id.name', '=', 'Belarus')])
+    # product_id = fields.Many2one('product.template')
+    # name = fields.Selection([('brest_region', 'Brest Region'), ('vitebsk_region', 'Vitebsk Region'),
+    #                          ('gomel_region', 'Gomel Region'), ('gordno_region', 'Gordno Region'),
+    #                          ('mogilev_region', 'Mogilev Region'), ('minsk_region', 'Minsk Region')], string="Delivery Region")
+    #
+    # # code = fields.Char()
+    # type = fields.Selection([('no', 'no'), ('default', 'default'), ('custom', 'custom'), ('free', 'free')])
+    # currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')])
+    # amount = fields.Monetary(currency_field='currency_id', domain=[('type', '=', 'custom')])
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
     #  (варинат м20 лишает возможности выбора нескольких регионов)
