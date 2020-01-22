@@ -25,8 +25,9 @@ class ResCountryStateInverseIntegrationFields(models.Model):
     _name = 'product.template.onliner.line'
 
     product_id = fields.Many2one('product.template')
-    country_id = fields.Many2one('res.country', string='Country', default=lambda self: self.env.ref('base.by').id)
-    region = fields.Many2one('res.country.state', domain=[('country_id.name', '=', 'Belarus')])
+
+    # country_id = fields.Many2one('res.country', string='Country', default=lambda self: self.env.ref('base.by').id)
+    # region = fields.Many2one('res.country.state', domain=[('country_id.name', '=', 'Belarus')])
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
     #  (варинат м20 лишает возможности выбора нескольких регионов)
