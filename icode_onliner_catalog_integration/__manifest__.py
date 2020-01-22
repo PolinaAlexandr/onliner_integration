@@ -13,7 +13,7 @@
         'techelectro_stock'
     ],
     'data': [
-        'data/delivery_country_parameters.xml',
+        'data/delivery_country_data.xml',
         'security/ir.model.access.csv',
         'views/product_template_view_inherit.xml',
         'views/product_tree_view_publicize_action_button.xml',

@@ -24,7 +24,7 @@ class ProductTemplateIntegrationFields(models.Model):
 class ResCountryStateInverseIntegrationFields(models.Model):
     _name = 'product.template.onliner.line'
 
-    # product_id = fields.Many2one('product.template')
+    product_id = fields.Many2one('product.template')
     # name = fields.Selection([('brest_region', 'Brest Region'), ('vitebsk_region', 'Vitebsk Region'),
     #                          ('gomel_region', 'Gomel Region'), ('gordno_region', 'Gordno Region'),
     #                          ('mogilev_region', 'Mogilev Region'), ('minsk_region', 'Minsk Region')], string="Delivery Region")
