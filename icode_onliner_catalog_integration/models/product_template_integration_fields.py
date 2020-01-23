@@ -52,6 +52,19 @@ class ProductTemplateIntegrationFields(models.Model):
                                 default='2')
     courier_delivery_price = fields.One2many('product.template.onliner.line', 'product_id')
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('courier_delivery_price'):
+                vals['courier_delivery_price'] = vals['code']
+        return super(ProductTemplateIntegrationFields, self).create(vals_list)
+
+
+    def write(self, vals):
+        if vals.get('code'):
+            vals['code'] = vals['code'].upper()
+        return super(ProductTemplateIntegrationFields, self).write(vals)
+
 
 class ResCountryStateInverseIntegrationFields(models.Model):
     _name = 'product.template.onliner.line'
@@ -81,6 +94,6 @@ class ResCountryStateInverseIntegrationFields(models.Model):
     #  1) тип поля отвечающего за регионы доставки: необходима опция выбора от одного до шести(изначально) регионов
     #  (возможность насширения региональнойй сети)(res.config.settings)
     #  2) Цены доставки в рамках областных центрах
-    # TODO post_init функция, create/write для продуктов, 
+    # TODO post_init функция, create/write для продуктов,
 
 
