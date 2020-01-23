@@ -1,6 +1,33 @@
 from odoo import fields, models, api
 
 
+REGIONS = [
+    ('brest_region', 'Brest Region'),
+    ('vitebsk_region', 'Vitebsk Region'),
+    ('gomel_region', 'Gomel Region'),
+    ('gordno_region', 'Gordno Region'),
+    ('mogilev_region', 'Mogilev Region'),
+    ('minsk_region', 'Minsk Region')
+]
+
+
+DELIVERY_TYPE = [
+    ('no', 'no'),
+    ('default', 'default'),
+    ('custom', 'custom'),
+    ('free', 'free')
+]
+
+
+class OnlinerRegionSettings(models.Model):
+    _name = 'onliner.region_settings'
+
+    name = fields.Selection(REGIONS)
+    delivery_type = fields.Selection(DELIVERY_TYPE)
+    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')])
+    price = fields.Monetary(currency_field=currency_id, default=0)
+
+
 class ProductTemplateIntegrationFields(models.Model):
     _inherit = 'product.template'
 
@@ -24,14 +51,16 @@ class ProductTemplateIntegrationFields(models.Model):
 class ResCountryStateInverseIntegrationFields(models.Model):
     _name = 'product.template.onliner.line'
 
-    def set_params(self):
+    product_id = fields.Many2one('product.template')
 
-        product_id = fields.Many2one('product.template')
-        name = self.env['delivery_country_data'].sudo().get_param('icode_onliner_by_integration.token', default='')
-        # code = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
-        type = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
-        currency_id = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
-        amount = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
+    # def set_params(self):
+    #     name = self.env['delivery_country_data'].sudo().get_param('product_template_onliner_line.name', default='')
+    #     code = self.env['ir.config_parameter'].sudo().get_param('product_template_onliner_line.code', default='')
+    #     type = self.env['ir.config_parameter'].sudo().get_param('product_template_onliner_line.type', default='')
+    #     currency_id = self.env['ir.config_parameter'].sudo().get_param('product_template_onliner_line.currency_id', default='')
+    #     amount = self.env['ir.config_parameter'].sudo().get_param('product_template_onliner_line.amount', default='')
+    #
+    #     return name, code, type, currency_id, amount
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
     #  (варинат м20 лишает возможности выбора нескольких регионов)
@@ -47,12 +76,6 @@ class ResCountryStateInverseIntegrationFields(models.Model):
     #  1) тип поля отвечающего за регионы доставки: необходима опция выбора от одного до шести(изначально) регионов
     #  (возможность насширения региональнойй сети)(res.config.settings)
     #  2) Цены доставки в рамках областных центрах
-
-
-    # Создать data файл для регионов доставки и изначально указать значение default,
-    # пользователь сможет менять значения самостоятельно однако при отсуствии ааеденных значений всегда вернется default
-    # так же значения в data файлах неизменяемы пользователями(в базе)
-    # code = fields.Char(related='states.name.code')
-
+    # TODO post_init функция, create/write для продуктов, запретить редактирования в security
 
 

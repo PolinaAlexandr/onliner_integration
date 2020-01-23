@@ -38,4 +38,51 @@
             </field>
         </record>
     </data>
+
+
+    <record id="onliner_region_settings_tree_view" model="ir.ui.view">
+        <field name="name">onliner_region_settings_tree</field>
+        <field name="model">onliner.region_settings</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="delivery_type"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="onliner_region_settings_form_view" model="ir.ui.view">
+        <field name="name">onliner_region_settings_form</field>
+        <field name="model">onliner.region_settings</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" required="1"/></h1>
+                    </div>
+                    <group>
+                        <field name="delivery_type"/>
+                        <field name="currency_id" groups="base.group_system"/>
+                        <field name="price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="onliner_region_settings_action" model="ir.actions.act_window">
+        <field name="name">Onliner Region Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">onliner.region_settings</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="onliner_region_settings_menu"
+        name="Onliner Region Settings"
+        action="onliner_region_settings_action"
+        parent="sale.prod_config_main"
+        sequence="2"/>
+
 </odoo>
