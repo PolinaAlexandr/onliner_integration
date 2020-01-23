@@ -22,10 +22,15 @@ DELIVERY_TYPE = [
 class OnlinerRegionSettings(models.Model):
     _name = 'onliner.region_settings'
 
+    # def get_default_currency(self):
+    #     currency_id = self.env['res.currency'].search[('name', '=', 'BYN')]
+    #     return currency_id
+
     name = fields.Selection(REGIONS)
     delivery_type = fields.Selection(DELIVERY_TYPE)
-    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')])
-    price = fields.Monetary(currency_field=currency_id, default=0)
+    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
+                                  default=lambda self: self.env.currency.name == 'BYN')
+    price = fields.Monetary(currency_field='currency_id')
 
 
 class ProductTemplateIntegrationFields(models.Model):
@@ -76,6 +81,6 @@ class ResCountryStateInverseIntegrationFields(models.Model):
     #  1) тип поля отвечающего за регионы доставки: необходима опция выбора от одного до шести(изначально) регионов
     #  (возможность насширения региональнойй сети)(res.config.settings)
     #  2) Цены доставки в рамках областных центрах
-    # TODO post_init функция, create/write для продуктов, запретить редактирования в security
+    # TODO post_init функция, create/write для продуктов, 
 
 

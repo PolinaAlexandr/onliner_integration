@@ -27,8 +27,8 @@ class ProductTemplateGetProductInfoWizard(models.TransientModel):
     product_ids = fields.Many2many('product.template', string='Selected Products')
     names = fields.Char(string='Names')
     product_count = fields.Integer()
-    importer = fields.Many2one()
-    currency = fields.Many2one()
+    # importer = fields.Many2one()
+    # currency = fields.Many2one()
 
     # @api.onchange('product_ids')
     # def _compute_product_ids(self):
