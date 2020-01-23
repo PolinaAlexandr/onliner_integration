@@ -31,20 +31,20 @@ class OnlinerRegionSettings(models.Model):
 class ProductTemplateIntegrationFields(models.Model):
     _inherit = 'product.template'
 
-    importer = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade')
-    producer = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade')
-    vendor = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade')
+    importer = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
+    producer = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
+    vendor = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
     is_cashless = fields.Boolean(string='Is Cashless')
     is_credit = fields.Boolean(string='Is Credit')
-    service_centers = fields.Char(string='Service Centers')
+    service_centers = fields.Char(string='Service Centers', required=True)
     delivery_country_id = fields.Many2one('res.country', string='Country',
-                                          default=lambda self: self.env.ref('base.by').id)
+                                          default=lambda self: self.env.ref('base.by').id, required=True)
     delivery_town_time = fields.Date()
     delivery_town_price = fields.Monetary(currency_field='currency_id')
     delivery_country_time = fields.Date()
-    delivery_country_price = fields.Monetary(currency_field='currency_id', )
+    delivery_country_price = fields.Monetary(currency_field='currency_id',)
     warranty = fields.Selection([('1', 'No Warranty'), ('2', '12 months'), ('3', '24 month')], string='Warranty',
-                                default='2')
+                                default='2', required=True)
 
     def _get_default_courier_delivery_price_ids(self):
         return [(6, 0, self.env['onliner.region_settings'].search([]).ids)]
@@ -54,17 +54,13 @@ class ProductTemplateIntegrationFields(models.Model):
 
     def create(self, vals_list):
         for vals in vals_list:
-            if not vals.get('courier_delivery_price_ids'):
-                vals['courier_delivery_price_ids'] = vals.get('courier_delivery_price_ids') or vals['courier_delivery_price_ids']
+            vals['courier_delivery_price_ids'] = [(6, 0, self.env['onliner.region_settings'].search([]).ids)]
             return super(ProductTemplateIntegrationFields, self).create(vals_list)
 
-    def write(self, vals):
-        for vals in vals:
-            if not vals.get('courier_delivery_price_ids'):
-                vals['courier_delivery_price_ids'] = vals.get('courier_delivery_price_ids') or vals[
-                    'courier_delivery_price_ids']
-            return super(ProductTemplateIntegrationFields, self).write(vals)
-
+    # def write(self, vals):
+    #     for vals in vals:
+    #         vals['courier_delivery_price_ids'] = [(6, 0, self.env['onliner.region_settings'].search([]).ids)]
+    #         return super(ProductTemplateIntegrationFields, self).write(vals)
 
 # class ResCountryStateInverseIntegrationFields(models.Model):
 #     _name = 'product.template.onliner.line'
