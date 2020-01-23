@@ -36,7 +36,7 @@ class ProductTemplateIntegrationFields(models.Model):
     vendor = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
     is_cashless = fields.Boolean(string='Is Cashless')
     is_credit = fields.Boolean(string='Is Credit')
-    service_centers = fields.Char(string='Service Centers', required=True)
+    service_centers = fields.Char(string='Service Centers', default='Some Address Here',  required=True)
     delivery_country_id = fields.Many2one('res.country', string='Country',
                                           default=lambda self: self.env.ref('base.by').id, required=True)
     delivery_town_time = fields.Date()
