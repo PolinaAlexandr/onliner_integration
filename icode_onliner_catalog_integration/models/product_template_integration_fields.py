@@ -24,15 +24,14 @@ class ProductTemplateIntegrationFields(models.Model):
 class ResCountryStateInverseIntegrationFields(models.Model):
     _name = 'product.template.onliner.line'
 
-    product_id = fields.Many2one('product.template')
-    # name = fields.Selection([('brest_region', 'Brest Region'), ('vitebsk_region', 'Vitebsk Region'),
-    #                          ('gomel_region', 'Gomel Region'), ('gordno_region', 'Gordno Region'),
-    #                          ('mogilev_region', 'Mogilev Region'), ('minsk_region', 'Minsk Region')], string="Delivery Region")
-    #
-    # # code = fields.Char()
-    # type = fields.Selection([('no', 'no'), ('default', 'default'), ('custom', 'custom'), ('free', 'free')])
-    # currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')])
-    # amount = fields.Monetary(currency_field='currency_id', domain=[('type', '=', 'custom')])
+    def set_params(self):
+
+        product_id = fields.Many2one('product.template')
+        name = self.env['delivery_country_data'].sudo().get_param('icode_onliner_by_integration.token', default='')
+        # code = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
+        type = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
+        currency_id = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
+        amount = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
     #  (варинат м20 лишает возможности выбора нескольких регионов)

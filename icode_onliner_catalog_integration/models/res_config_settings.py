@@ -16,15 +16,26 @@ class ResConfigSettings(models.TransientModel):
 
     @api.model
     def get_values(self):
+        # conf = self.env['delivery_country_data']
         res = super(ResConfigSettings, self).get_values()
-        # res['name'] = self.env['ir.config_parameter'].sudo().get_param('name', default='')
         # res['icode_onliner_by_integration_token'] = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token',
-        #                                                                          default='')
+
+        res['name'] = self.env['delivery_country_data'].sudo().get_param('name', default='minsk_region')
+        res['code'] = self.env['delivery_country_data'].sudo().get_param('code', default='06')
+        res['type'] = self.env['delivery_country_data'].sudo().get_param('type', default='default')
+        res['currency_id'] = self.env['delivery_country_data'].sudo().get_param('country_id', default='')
+        res['amount'] = self.env['delivery_country_data'].sudo().get_param('amount', default='')
 
         return res
 
     @api.model
     def set_values(self):
         # self.env['ir.config_parameter'].sudo().set_param('icode_onliner_by_integration.token', self.icode_onliner_by_integration_token)
+
+        self.env['delivery_country_data'].sudo().set_param('product_template_onliner_line.name', self.name)
+        self.env['delivery_country_data'].sudo().set_param('product_template_onliner_line.code', self.code)
+        self.env['delivery_country_data'].sudo().set_param('product_template_onliner_line.type', self.type)
+        self.env['delivery_country_data'].sudo().set_param('product_template_onliner_line.currency_id', self.currency_id)
+        self.env['delivery_country_data'].sudo().set_param('product_template_onliner_line.amount', self.amount)
 
         super(ResConfigSettings, self).set_values()
