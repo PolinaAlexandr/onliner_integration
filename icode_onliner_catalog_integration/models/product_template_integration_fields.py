@@ -22,11 +22,10 @@ DELIVERY_TYPE = [
 class OnlinerRegionSettings(models.Model):
     _name = 'onliner.region_settings'
 
-    name = fields.Selection(REGIONS)
-    delivery_type = fields.Selection(DELIVERY_TYPE)
-    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
-                                  default=lambda self: self.env.currency.name == 'BYN')
-    price = fields.Monetary(currency_field='currency_id')
+    name = fields.Selection(REGIONS, readonly=True)
+    delivery_type = fields.Selection(DELIVERY_TYPE, required=True)
+    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.ref('base.BYN'))
+    price = fields.Monetary(currency_field='currency_id', reQuired=True)
 
 
 class ProductTemplateIntegrationFields(models.Model):
@@ -46,45 +45,31 @@ class ProductTemplateIntegrationFields(models.Model):
     delivery_country_price = fields.Monetary(currency_field='currency_id', )
     warranty = fields.Selection([('1', 'No Warranty'), ('2', '12 months'), ('3', '24 month')], string='Warranty',
                                 default='2')
-    courier_delivery_price = fields.One2many('product.template.onliner.line', 'product_id')
 
-    # def create(self, vals_list):
-    #     for vals in vals_list:
-    #         if not 'name' in vals_list:
-    #             vals['name'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.name',
-    #                                                                                  default='')]
-    #         if not 'type' in vals_list:
-    #             vals['type'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.type',
-    #                                                                                  default='')]
-    #         if not 'currency_id' in vals_list:
-    #             vals['currency_id'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.currency_id',
-    #                                                                                         default='')]
-    #         if not 'price' in vals_list:
-    #             vals['price'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.price',
-    #                                                                                   default='')]
-    #         return super(ProductTemplateIntegrationFields, self).create(vals_list)
-    #
-    # def write(self, vals):
-    #     for vals in vals:
-    #         if not 'name' in vals:
-    #             vals['name'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.name',
-    #                                                                                  default='')]
-    #         if not 'type' in vals:
-    #             vals['type'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.type',
-    #                                                                                  default='')]
-    #         if not 'currency_id' in vals:
-    #             vals['currency_id'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.currency_id',
-    #                                                                                         default='')]
-    #         if not 'price' in vals:
-    #             vals['price'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.price',
-    #                                                                                   default='')]
-    #         return super(ProductTemplateIntegrationFields, self).write(vals)
+    def _get_default_courier_delivery_price_ids(self):
+        return [(6, 0, self.env['onliner.region_settings'].search([]).ids)]
+
+    # courier_delivery_price = fields.One2many('product.template.onliner.line', 'product_id')
+    courier_delivery_price_ids = fields.Many2many('onliner.region_settings', default=_get_default_courier_delivery_price_ids)
+
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get('courier_delivery_price_ids'):
+                vals['courier_delivery_price_ids'] = vals.get('courier_delivery_price_ids') or vals['courier_delivery_price_ids']
+            return super(ProductTemplateIntegrationFields, self).create(vals_list)
+
+    def write(self, vals):
+        for vals in vals:
+            if not vals.get('courier_delivery_price_ids'):
+                vals['courier_delivery_price_ids'] = vals.get('courier_delivery_price_ids') or vals[
+                    'courier_delivery_price_ids']
+            return super(ProductTemplateIntegrationFields, self).write(vals)
 
 
-class ResCountryStateInverseIntegrationFields(models.Model):
-    _name = 'product.template.onliner.line'
-
-    product_id = fields.Many2one('product.template')
+# class ResCountryStateInverseIntegrationFields(models.Model):
+#     _name = 'product.template.onliner.line'
+#
+#     product_id = fields.Many2one('product.template')
 
     # @api.model_create_multi
     # def create(self, vals_list):

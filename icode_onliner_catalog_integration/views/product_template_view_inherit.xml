@@ -23,7 +23,7 @@
                         <field name="vendor"/>
                         <field name="warranty"/>
                         <field name="delivery_country_id"/>
-                        <field name="courier_delivery_price"/>
+                        <field name="courier_delivery_price_ids"/>
                     </group>
                 </xpath>
                 <xpath expr="//page[@name='inventory']" position="inside">
