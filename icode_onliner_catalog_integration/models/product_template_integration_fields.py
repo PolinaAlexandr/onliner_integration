@@ -47,63 +47,11 @@ class ProductTemplateIntegrationFields(models.Model):
                                 default='2', required=True)
 
     def _get_default_courier_delivery_price_ids(self):
+
         return [(6, 0, self.env['onliner.region_settings'].search([]).ids)]
 
-    # courier_delivery_price = fields.One2many('product.template.onliner.line', 'product_id')
-    courier_delivery_price_ids = fields.Many2many('onliner.region_settings', default=_get_default_courier_delivery_price_ids)
-
-    def create(self, vals_list):
-        for vals in vals_list:
-            vals['courier_delivery_price_ids'] = [(6, 0, self.env['onliner.region_settings'].search([]).ids)]
-            return super(ProductTemplateIntegrationFields, self).create(vals_list)
-
-    # def write(self, vals):
-    #     for vals in vals:
-    #         vals['courier_delivery_price_ids'] = [(6, 0, self.env['onliner.region_settings'].search([]).ids)]
-    #         return super(ProductTemplateIntegrationFields, self).write(vals)
-
-# class ResCountryStateInverseIntegrationFields(models.Model):
-#     _name = 'product.template.onliner.line'
-#
-#     product_id = fields.Many2one('product.template')
-
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     for vals in vals_list:
-    #         if not 'name' in vals_list:
-    #             vals['name'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.name',
-    #                                                                                  default='')]
-    #         if not 'type' in vals_list:
-    #             vals['type'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.type',
-    #                                                                                  default='')]
-    #         if not 'currency_id' in vals_list:
-    #             vals['currency_id'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.currency_id',
-    #                                                                                         default='')]
-    #         if not 'price' in vals_list:
-    #             vals['price'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.price',
-    #                                                                                   default='')]
-    #         return super(ResCountryStateInverseIntegrationFields, self).create(vals_list)
-    #
-    # def write(self, vals):
-    #     for vals in vals:
-    #         if not 'name' in vals:
-    #             vals['name'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.name',
-    #                                                                                  default='')]
-    #         if not 'type' in vals:
-    #             vals['type'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.type',
-    #                                                                                  default='')]
-    #         if not 'currency_id' in vals:
-    #             vals['currency_id'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.currency_id',
-    #                                                                                         default='')]
-    #         if not 'price' in vals:
-    #             vals['price'] = vals[self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.price',
-    #                                                                                   default='')]
-    #         return super(ResCountryStateInverseIntegrationFields, self).write(vals)
-
-        # name = self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.name', default='')
-        # type = self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.type', default='')
-        # currency_id = self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.currency_id', default='')
-        # price = self.env['ir.config_parameter'].sudo().get_param('onliner.region_settings.price', default='')
+    courier_delivery_price_ids = fields.Many2many('onliner.region_settings',
+                                                  default=_get_default_courier_delivery_price_ids)
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
     #  (варинат м20 лишает возможности выбора нескольких регионов)
