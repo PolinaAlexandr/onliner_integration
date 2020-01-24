@@ -48,7 +48,7 @@ class ProductTemplateIntegrationFields(models.Model):
     courier_delivery_price_ids = fields.One2many('product.onliner.region_settings.line', 'product_id')
 
 
-class ProductOnlinerRegionSettings(models.Model):
+class ProductOnlinerRegionSettingsLine(models.Model):
     _name = 'product.onliner.region_settings.line'
 
     name = fields.Selection(REGIONS, required=True)
@@ -58,9 +58,21 @@ class ProductOnlinerRegionSettings(models.Model):
                                   default=lambda self: self.env.ref('base.BYN'))
     price = fields.Monetary(currency_field='currency_id', reuired=True)
 
-    # @api.model_create_multi
-    # def create(self, vals_list):
-    #     pass
+    @api.onchange('name')
+    def check_duplications(self):
+        product_cdp_ids = self.env['product.template'].browse('courier_delivery_price_ids')
+        for product_cdp_id in product_cdp_ids:
+            name = product_cdp_id.name
+            if name in product_cdp_ids.name:
+                raise Exception('Region already been configured')
+
+    @api.model
+    def default_get(self, fields_list):
+        res = super(ProductOnlinerRegionSettingsLine, self).default_get(fields_list)
+        delivery_vals = self.env['onliner.region_settings'].search([])
+        if delivery_vals:
+            res.update({'delivery_type': delivery_vals[0].delivery_type, })
+            return res
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
     #  (варинат м20 лишает возможности выбора нескольких регионов)
