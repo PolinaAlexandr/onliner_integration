@@ -57,14 +57,14 @@ class ProductOnlinerRegionSettingsLine(models.Model):
     currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
                                   default=lambda self: self.env.ref('base.BYN'))
     price = fields.Monetary(currency_field='currency_id', reuired=True)
-
-    @api.onchange('name')
-    def check_duplications(self):
-        product_cdp_ids = self.env['product.template'].browse('courier_delivery_price_ids')
-        for product_cdp_id in product_cdp_ids:
-            name = product_cdp_id.name
-            if name in product_cdp_ids.name:
-                raise Exception('Region already been configured')
+    #
+    # @api.onchange('name')
+    # def check_duplications(self):
+    #     product_cdp_ids = self.env['product.template'].browse('courier_delivery_price_ids')
+    #     for product_cdp_id in product_cdp_ids:
+    #         name = product_cdp_id.name
+    #         if name in product_cdp_ids.name:
+    #             raise Exception('Region already been configured')
 
     @api.model
     def default_get(self, fields_list):
