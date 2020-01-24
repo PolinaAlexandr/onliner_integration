@@ -11,7 +11,7 @@
 <!--                        <field name="currency"/>-->
 <!--                        <field name="product_count"/>-->
 <!--                        TODO добавить все поля с 'дефолтной' невидимомтью благодаря домейну также поветись дефолт в модели продукта -->
-<!--                        <field name="names"/>-->
+                        <field name="names"/>
 <!--                        <field name="warranty" attrs="{'invisible': [('warranty_issue', '=', True)], 'required': [('warranty_issue', '=', False)]}"/>-->
                     </group>
                 </sheet>

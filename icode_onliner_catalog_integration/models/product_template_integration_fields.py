@@ -1,6 +1,5 @@
 from odoo import fields, models, api
 
-
 REGIONS = [
     ('brest_region', 'Brest Region'),
     ('vitebsk_region', 'Vitebsk Region'),
@@ -22,10 +21,11 @@ DELIVERY_TYPE = [
 class OnlinerRegionSettings(models.Model):
     _name = 'onliner.region_settings'
 
-    name = fields.Selection(REGIONS, readonly=True)
+    name = fields.Selection(REGIONS)
     delivery_type = fields.Selection(DELIVERY_TYPE, required=True)
-    currency_id = fields.Many2one('res.currency', default=lambda self: self.env.ref('base.BYN'))
-    price = fields.Monetary(currency_field='currency_id', reQuired=True)
+    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
+                                  default=lambda self: self.env.ref('base.BYN'))
+    price = fields.Monetary(currency_field='currency_id', reuired=True)
 
 
 class ProductTemplateIntegrationFields(models.Model):
@@ -45,13 +45,22 @@ class ProductTemplateIntegrationFields(models.Model):
     delivery_country_price = fields.Monetary(currency_field='currency_id',)
     warranty = fields.Selection([('1', 'No Warranty'), ('2', '12 months'), ('3', '24 month')], string='Warranty',
                                 default='2', required=True)
+    courier_delivery_price_ids = fields.One2many('product.onliner.region_settings.line', 'product_id')
 
-    def _get_default_courier_delivery_price_ids(self):
 
-        return [(6, 0, self.env['onliner.region_settings'].search([]).ids)]
+class ProductOnlinerRegionSettings(models.Model):
+    _name = 'product.onliner.region_settings.line'
 
-    courier_delivery_price_ids = fields.Many2many('onliner.region_settings',
-                                                  default=_get_default_courier_delivery_price_ids)
+    name = fields.Selection(REGIONS, required=True)
+    product_id = fields.Many2one('product.template', string='Courier Delivery Price')
+    delivery_type = fields.Selection(DELIVERY_TYPE, required=True)
+    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
+                                  default=lambda self: self.env.ref('base.BYN'))
+    price = fields.Monetary(currency_field='currency_id', reuired=True)
+
+    # @api.model_create_multi
+    # def create(self, vals_list):
+    #     pass
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
     #  (варинат м20 лишает возможности выбора нескольких регионов)
@@ -67,6 +76,6 @@ class ProductTemplateIntegrationFields(models.Model):
     #  1) тип поля отвечающего за регионы доставки: необходима опция выбора от одного до шести(изначально) регионов
     #  (возможность насширения региональнойй сети)(res.config.settings)
     #  2) Цены доставки в рамках областных центрах
-    # TODO post_init функция, create/write для продуктов, урезать доступ в security
-
-
+    # TODO post_init функция(заменяет overriding методов create/write, автоматически
+    #  выставляя значения во все существующие продукты по установке модуля),
+    #  create/write для продуктов, урезать доступ в security

@@ -39,7 +39,8 @@ class OnlinerCatalog(models.Model):
             product_life_time = product.exploitation_period
             is_cashless = product.is_cashless
             is_credit = product.is_credit
-
+            courier_delivery_price = product.courier_delivery_price_ids
+            #
             # for i in product.mapped(i) == [] or () or False or 0 :
 
             product_info = {
@@ -63,13 +64,30 @@ class OnlinerCatalog(models.Model):
                 "isCredit": is_credit,
                 "stockStatus": "in_stock",
                 "courierDeliveryPrices": {
-                    "region-1": {
-                        "type": "custom",
-                        "amount": "2.99"
-                    },
-                    "region-2": {
-                        "type": "no"
-                    }
+                    # "region-1": {
+                    #     "type": courier_delivery_price[0].delivery_type,
+                    #     "amount": courier_delivery_price[0].price
+                    # },
+                    # "region-2": {
+                    #     "type": courier_delivery_price[1].delivery_type,
+                    #     "amount": courier_delivery_price[1].price,
+                    # },
+                    # "region-3": {
+                    #     "type": courier_delivery_price[2].delivery_type,
+                    #     "amount": courier_delivery_price[2].price
+                    # },
+                    # "region-4": {
+                    #     "type": courier_delivery_price[3].delivery_type,
+                    #     "amount": courier_delivery_price[3].price,
+                    # },
+                    # "region-5": {
+                    #     "type": courier_delivery_price[4].delivery_type,
+                    #     "amount": courier_delivery_price[4].price
+                    # },
+                    # "region-6": {
+                    #     "type": courier_delivery_price[5].delivery_type,
+                    #     "amount": courier_delivery_price[5].price
+                    # }
                 }
             }
 
