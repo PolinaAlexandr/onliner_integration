@@ -19,8 +19,18 @@ class OnlinerCatalog(models.Model):
         products = Product.browse(active_ids)
         product_info = {}
         data = []
-        # nums = random.randint(0, 1000)
         for product in products:
+            #
+            # def get_courier_delivery_price():
+            #     for cd_price_id in product.courier_delivery_price_ids:
+            #         region = {
+            #              str(cd_price_id.name): {
+            #                  "type": cd_price_id.delivery_type,
+            #                  "amount": cd_price_id.price
+            #              }
+            #         }
+            #         return region
+
             product_id = product.id
             category = product.categ_id.name
             vendor = product.producer.name
@@ -39,8 +49,7 @@ class OnlinerCatalog(models.Model):
             product_life_time = product.exploitation_period
             is_cashless = product.is_cashless
             is_credit = product.is_credit
-            courier_delivery_price = product.courier_delivery_price_ids
-            #
+            # courier_delivery_price = get_courier_delivery_price()
             # for i in product.mapped(i) == [] or () or False or 0 :
 
             product_info = {
@@ -64,30 +73,7 @@ class OnlinerCatalog(models.Model):
                 "isCredit": is_credit,
                 "stockStatus": "in_stock",
                 "courierDeliveryPrices": {
-                    # "region-1": {
-                    #     "type": courier_delivery_price[0].delivery_type,
-                    #     "amount": courier_delivery_price[0].price
-                    # },
-                    # "region-2": {
-                    #     "type": courier_delivery_price[1].delivery_type,
-                    #     "amount": courier_delivery_price[1].price,
-                    # },
-                    # "region-3": {
-                    #     "type": courier_delivery_price[2].delivery_type,
-                    #     "amount": courier_delivery_price[2].price
-                    # },
-                    # "region-4": {
-                    #     "type": courier_delivery_price[3].delivery_type,
-                    #     "amount": courier_delivery_price[3].price,
-                    # },
-                    # "region-5": {
-                    #     "type": courier_delivery_price[4].delivery_type,
-                    #     "amount": courier_delivery_price[4].price
-                    # },
-                    # "region-6": {
-                    #     "type": courier_delivery_price[5].delivery_type,
-                    #     "amount": courier_delivery_price[5].price
-                    # }
+                   # courier_delivery_price
                 }
             }
 

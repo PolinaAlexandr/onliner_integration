@@ -14,7 +14,7 @@
                         <group>
                             <field name="delivery_type"/>
                             <field name="currency_id" options="{'no_open': True}"/>
-                            <field name="price" options="{'no_open': True}"/>
+                            <field name="price" options="{'no_open': True}" attrs="{'invisible':[('delivery_type', '!=', 'custom')]}"/>
                         </group>
                     </sheet>
                 </form>

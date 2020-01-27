@@ -62,21 +62,22 @@ class ProductTemplateIntegrationFields(models.Model):
         res.update({'courier_delivery_price_ids': result})
         return res
 
-    # @api.onchange('name')
+    # @api.onchange('courier_delivery_price_ids')
     # def check_duplications(self):
-    #     return
-        # if self.env['product.template'].search([('courier_delivery_price_ids.name', '=', self.name)]):
-        #     raise Exception('Region already been configured')
+    #     if self.courier_delivery_price_ids:
+    #         existing_names = self.courier_delivery_price_ids.mapped('name')
+    #         domain = [(self.name, 'not in', existing_names)]
+    #         return {'domain': {'courier_delivery_price_ids': domain}}
 
 
 class ProductOnlinerRegionSettingsLine(models.Model):
     _name = 'product.onliner.region_settings.line'
 
-    name = fields.Selection(REGIONS, required=True)
+    name = fields.Selection(REGIONS, required=True, readonly=True)
     product_id = fields.Many2one('product.template', string='Courier Delivery Price')
     delivery_type = fields.Selection(DELIVERY_TYPE, required=True)
     currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
-                                  default=lambda self: self.env.ref('base.BYN'))
+                                  default=lambda self: self.env.ref('base.BYN', required=True))
     price = fields.Monetary(currency_field='currency_id', reuired=True)
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
