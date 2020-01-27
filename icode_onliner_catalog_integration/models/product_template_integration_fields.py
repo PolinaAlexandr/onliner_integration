@@ -31,6 +31,8 @@ class OnlinerRegionSettings(models.Model):
 class ProductTemplateIntegrationFields(models.Model):
     _inherit = 'product.template'
 
+    exploitation_period = fields.Char(required=True, default='5 years')
+    extra_description = fields.Html(default="Text Description")
     importer = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
     producer = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
     vendor = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
@@ -39,7 +41,8 @@ class ProductTemplateIntegrationFields(models.Model):
     service_centers = fields.Char(string='Service Centers', default='Some Address Here',  required=True)
     delivery_country_id = fields.Many2one('res.country', string='Country', domain=[('name', '=', 'Belarus')],
                                           default=lambda self: self.env.ref('base.by').id, required=True)
-    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')], readonly=False)
+    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')], default=lambda self: self.env.ref('base.BYN'),
+                                  readonly=False)
     delivery_town_time = fields.Selection([('1', 'One day'), ('2', 'Two days'), ('3', 'Three days')],
                                           string='Delivery Town Time', default='1', required=True)
 

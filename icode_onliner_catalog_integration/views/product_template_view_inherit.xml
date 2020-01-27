@@ -23,6 +23,7 @@
                         <field name="vendor" options="{'no_open': True}"/>
                         <field name="warranty"/>
                         <field name="delivery_country_id" options="{'no_open': True}"/>
+                        <field name="currency_id"/>
                         <field name="delivery_town_time"/>
                         <field name="delivery_town_price"/>
                         <field name="delivery_country_time"/>

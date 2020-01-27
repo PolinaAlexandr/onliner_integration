@@ -5,6 +5,7 @@
 <!--        <field name="key">icode_onliner_by_integration.token</field>-->
 <!--        <field name="value"></field>-->
 <!--    </record>-->
+
         <record model="onliner.region_settings" id="brest">
             <field name="name">brest_region</field>
             <field name="delivery_type">default</field>

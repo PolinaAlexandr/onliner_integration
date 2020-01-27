@@ -8,8 +8,6 @@ from odoo import fields, models, api
 class OnlinerCatalog(models.Model):
     _inherit = 'product.template'
 
-    # TODO открывать поля чьи значения не заданы/имеют не подходящие данные на форме визарда и при вводе напрямую записывать значения в словарь
-
     def publicize_on_onliner(self):
         form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
         active_id = self._context.get('active_id')
@@ -64,7 +62,7 @@ class OnlinerCatalog(models.Model):
                 "vendor": vendor,
                 "model": model,
                 "price": price,
-                "currency": 'BYN',
+                "currency": currency,
                 "comment": comment,
                 "producer": producer,
                 "importer": importer,
@@ -91,6 +89,7 @@ class OnlinerCatalog(models.Model):
                 'context': {
                     'default_product_ids': active_ids,
                     'default_names': product_info,
+
                 },
                 'target': 'new'}
 
