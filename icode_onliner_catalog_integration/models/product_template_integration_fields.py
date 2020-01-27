@@ -82,21 +82,3 @@ class ProductOnlinerRegionSettingsLine(models.Model):
     currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
                                   default=lambda self: self.env.ref('base.BYN', required=True))
     price = fields.Monetary(currency_field='currency_id', reuired=True)
-
-    # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
-    #  (варинат м20 лишает возможности выбора нескольких регионов)
-    # TODO для каждого из указанных регионов предоставить варианты стоимости доставки
-    #  (type: custom, free, default, no )
-    # TODO type:custom : при выборе данного типа должно открываться окно для ввода цены "amount(Monetary)"
-    # TODO type:free : простая запись значения
-    # TODO type:default :
-    #  величина определяется со стороны онлайнера и имеет денежный эквивалент только на их ресурсе
-    # TODO type:no :
-    #  (вероятнее всего служит индикатором наличия региона в тарифной сети)
-    # TODO Вопросы к решению:
-    #  1) тип поля отвечающего за регионы доставки: необходима опция выбора от одного до шести(изначально) регионов
-    #  (возможность насширения региональнойй сети)(res.config.settings)
-    #  2) Цены доставки в рамках областных центрах
-    # TODO post_init функция(заменяет overriding методов create/write, автоматически
-    #  выставляя значения во все существующие продукты по установке модуля),
-    #  create/write для продуктов, урезать доступ в security

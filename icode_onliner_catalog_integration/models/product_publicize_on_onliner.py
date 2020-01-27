@@ -1,6 +1,5 @@
 import json
 import requests
-import random
 
 from odoo import fields, models, api
 
@@ -8,8 +7,17 @@ from odoo import fields, models, api
 class OnlinerCatalog(models.Model):
     _inherit = 'product.template'
 
+    # def form_request(self, data, params):
+    #     url = "https://b2bapi.onliner.by/pricelists"
+    #     token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
+    #     header = {
+    #         'Accept': 'application/json',
+    #         'Content-Type': 'application/json',
+    #         'Authorization': token}
+    #     request = requests.put(url, data, headers=header)
+    #     return request
+
     def publicize_on_onliner(self):
-        form_id = self.env.ref('icode_onliner_catalog_integration.product_template_get_product_info_wizard_view').id
         active_id = self._context.get('active_id')
         active_ids = self._context.get('active_ids', [active_id] if active_id else [])
         Product = self.env['product.template']
@@ -80,26 +88,4 @@ class OnlinerCatalog(models.Model):
             }
 
             data.append(product_info)
-
-            return {
-                'type': 'ir.actions.act_window',
-                'res_model': 'product.template.get_product_info_wizard',
-                'view_mode': 'form',
-                'views': [(form_id, 'form')],
-                'context': {
-                    'default_product_ids': active_ids,
-                    'default_names': product_info,
-
-                },
-                'target': 'new'}
-
-
-
-    # def form_request(self, data, params):
-    #         url = "https://b2bapi.onliner.by/pricelists"
-    #         token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
-    #         header = {
-    #             'Accept': 'application/json',
-    #             'Content-Type': 'application/json',
-    #             'Authorization': token}
-    #         request = requests.put(url, data, headers=header)
+        return data
