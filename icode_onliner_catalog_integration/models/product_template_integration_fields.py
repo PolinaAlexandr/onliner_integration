@@ -47,6 +47,27 @@ class ProductTemplateIntegrationFields(models.Model):
                                 default='2', required=True)
     courier_delivery_price_ids = fields.One2many('product.onliner.region_settings.line', 'product_id')
 
+    @api.model
+    def default_get(self, fields_list):
+        res = super(ProductTemplateIntegrationFields, self).default_get(fields_list)
+        delivery_vals = self.env['onliner.region_settings'].search([])
+        result = []
+        if delivery_vals:
+            for delivery_val in delivery_vals:
+                result.append((0, 0, {
+                    'name': delivery_val.name,
+                    'delivery_type': delivery_val.delivery_type,
+                    'price': delivery_val.price,
+                }))
+        res.update({'courier_delivery_price_ids': result})
+        return res
+
+    # @api.onchange('name')
+    # def check_duplications(self):
+    #     return
+        # if self.env['product.template'].search([('courier_delivery_price_ids.name', '=', self.name)]):
+        #     raise Exception('Region already been configured')
+
 
 class ProductOnlinerRegionSettingsLine(models.Model):
     _name = 'product.onliner.region_settings.line'
@@ -57,22 +78,6 @@ class ProductOnlinerRegionSettingsLine(models.Model):
     currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
                                   default=lambda self: self.env.ref('base.BYN'))
     price = fields.Monetary(currency_field='currency_id', reuired=True)
-    #
-    # @api.onchange('name')
-    # def check_duplications(self):
-    #     product_cdp_ids = self.env['product.template'].browse('courier_delivery_price_ids')
-    #     for product_cdp_id in product_cdp_ids:
-    #         name = product_cdp_id.name
-    #         if name in product_cdp_ids.name:
-    #             raise Exception('Region already been configured')
-
-    @api.model
-    def default_get(self, fields_list):
-        res = super(ProductOnlinerRegionSettingsLine, self).default_get(fields_list)
-        delivery_vals = self.env['onliner.region_settings'].search([])
-        if delivery_vals:
-            res.update({'delivery_type': delivery_vals[0].delivery_type, })
-            return res
 
     # TODO иметь возможность выбрать регионы относящиеся исключительно к РБ
     #  (варинат м20 лишает возможности выбора нескольких регионов)
