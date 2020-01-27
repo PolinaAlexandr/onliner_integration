@@ -21,5 +21,5 @@
         'views/product_onliner_region_settings_view.xml',
         'wizards/product_template_get_product_info_wizard_view.xml',
     ],
-    # 'post_init_hook': 'set_default_courier_delivery_price_ids'
+    'post_init_hook': 'set_default_courier_delivery_price_ids'
 }
