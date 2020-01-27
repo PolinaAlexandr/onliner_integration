@@ -37,14 +37,21 @@ class ProductTemplateIntegrationFields(models.Model):
     is_cashless = fields.Boolean(string='Is Cashless')
     is_credit = fields.Boolean(string='Is Credit')
     service_centers = fields.Char(string='Service Centers', default='Some Address Here',  required=True)
-    delivery_country_id = fields.Many2one('res.country', string='Country',
+    delivery_country_id = fields.Many2one('res.country', string='Country', domain=[('name', '=', 'Belarus')],
                                           default=lambda self: self.env.ref('base.by').id, required=True)
-    delivery_town_time = fields.Date()
+    currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')], readonly=False)
+    delivery_town_time = fields.Selection([('1', 'One day'), ('2', 'Two days'), ('3', 'Three days')],
+                                          string='Delivery Town Time', default='1', required=True)
+
     delivery_town_price = fields.Monetary(currency_field='currency_id')
-    delivery_country_time = fields.Date()
+
+    delivery_country_time = fields.Selection([('1', 'One day'), ('2', 'Two days'), ('3', 'Three days'), ('4', 'One week')],
+                                             string='Delivery Country Time', default='2', required=True)
+
     delivery_country_price = fields.Monetary(currency_field='currency_id',)
     warranty = fields.Selection([('1', 'No Warranty'), ('2', '12 months'), ('3', '24 month')], string='Warranty',
                                 default='2', required=True)
+
     courier_delivery_price_ids = fields.One2many('product.onliner.region_settings.line', 'product_id')
 
     @api.model
@@ -61,13 +68,6 @@ class ProductTemplateIntegrationFields(models.Model):
                 }))
         res.update({'courier_delivery_price_ids': result})
         return res
-
-    # @api.onchange('courier_delivery_price_ids')
-    # def check_duplications(self):
-    #     if self.courier_delivery_price_ids:
-    #         existing_names = self.courier_delivery_price_ids.mapped('name')
-    #         domain = [(self.name, 'not in', existing_names)]
-    #         return {'domain': {'courier_delivery_price_ids': domain}}
 
 
 class ProductOnlinerRegionSettingsLine(models.Model):

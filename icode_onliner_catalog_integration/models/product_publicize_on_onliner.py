@@ -20,17 +20,6 @@ class OnlinerCatalog(models.Model):
         product_info = {}
         data = []
         for product in products:
-            #
-            # def get_courier_delivery_price():
-            #     for cd_price_id in product.courier_delivery_price_ids:
-            #         region = {
-            #              str(cd_price_id.name): {
-            #                  "type": cd_price_id.delivery_type,
-            #                  "amount": cd_price_id.price
-            #              }
-            #         }
-            #         return region
-
             product_id = product.id
             category = product.categ_id.name
             vendor = product.producer.name
@@ -42,15 +31,32 @@ class OnlinerCatalog(models.Model):
             comment = product.extra_description
             service_centers = product.service_centers
             warranty = product._fields['warranty'].selection #list
-            delivery_town_time = product.delivery_town_time
+            delivery_town_time = product._fields['delivery_town_time'].selection
             delivery_town_price = product.delivery_town_price
-            delivery_country_time = product.delivery_country_time
+            delivery_country_time = product._fields['delivery_country_time'].selection
             delivery_country_price = product.delivery_country_price
             product_life_time = product.exploitation_period
             is_cashless = product.is_cashless
             is_credit = product.is_credit
-            # courier_delivery_price = get_courier_delivery_price()
-            # for i in product.mapped(i) == [] or () or False or 0 :
+            courier_delivery_price = {
+                "region-1": {
+                    "type": product.courier_delivery_price_ids[0].delivery_type,
+                    "price": product.courier_delivery_price_ids[0].price},
+                "region-2": {
+                    "type": product.courier_delivery_price_ids[1].delivery_type,
+                    "price": product.courier_delivery_price_ids[1].price},
+                "region-3": {
+                    "type": product.courier_delivery_price_ids[2].delivery_type,
+                    "price": product.courier_delivery_price_ids[2].price},
+                "region-4": {
+                    "type": product.courier_delivery_price_ids[3].delivery_type,
+                    "price": product.courier_delivery_price_ids[3].price},
+                "region-5": {
+                    "type": product.courier_delivery_price_ids[4].delivery_type,
+                    "price": product.courier_delivery_price_ids[4].price},
+                "region-6": {
+                    "type": product.courier_delivery_price_ids[5].delivery_type,
+                    "price": product.courier_delivery_price_ids[5].price}}
 
             product_info = {
                 "id": product_id,
@@ -64,17 +70,15 @@ class OnlinerCatalog(models.Model):
                 "importer": importer,
                 "serviceCenters": service_centers,
                 "warranty": [i for i in warranty if i[0] == product.warranty][0][1],
-                "deliveryTownTime": delivery_town_time,
+                "deliveryTownTime": [i for i in delivery_town_time if i[0] == product.delivery_town_time][0][1],
                 "deliveryTownPrice": delivery_town_price,
-                "deliveryCountryTime": delivery_country_time,
+                "deliveryCountryTime": [i for i in delivery_country_time if i[0] == product.delivery_country_time][0][1],
                 "deliveryCountryPrice": delivery_country_price,
                 "productLifeTime": product_life_time,
                 "isCashless": is_cashless,
                 "isCredit": is_credit,
                 "stockStatus": "in_stock",
-                "courierDeliveryPrices": {
-                   # courier_delivery_price
-                }
+                "courierDeliveryPrices": courier_delivery_price
             }
 
             data.append(product_info)
@@ -87,10 +91,6 @@ class OnlinerCatalog(models.Model):
                 'context': {
                     'default_product_ids': active_ids,
                     'default_names': product_info,
-                    # 'default_importer': importer,
-                    # 'default_currency': currency,
-                    # 'default_product_life_time': product_life_time,
-                    # 'default_product_count': product_count,
                 },
                 'target': 'new'}
 

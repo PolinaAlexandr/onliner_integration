@@ -17,12 +17,16 @@
                     </div>
                 </xpath>
                 <xpath expr="//page[@name='sales']" position="inside">
-                    <group name="onliner_delivery_country">
-                        <field name="importer"/>
-                        <field name="producer"/>
-                        <field name="vendor"/>
+                    <group name="onliner_delivery_country" options="{'no_open': True}">
+                        <field name="importer" options="{'no_open': True}"/>
+                        <field name="producer" options="{'no_open': True}"/>
+                        <field name="vendor" options="{'no_open': True}"/>
                         <field name="warranty"/>
-                        <field name="delivery_country_id"/>
+                        <field name="delivery_country_id" options="{'no_open': True}"/>
+                        <field name="delivery_town_time"/>
+                        <field name="delivery_town_price"/>
+                        <field name="delivery_country_time"/>
+                        <field name="delivery_country_price"/>
                         <field name="courier_delivery_price_ids">
                             <tree>
                                 <field name="name"/>
@@ -30,14 +34,6 @@
                                 <field name="price"/>
                             </tree>
                         </field>
-                    </group>
-                </xpath>
-                <xpath expr="//page[@name='inventory']" position="inside">
-                    <group name="onliner_delivery">
-                        <field name="delivery_town_time"/>
-                        <field name="delivery_town_price"/>
-                        <field name="delivery_country_time"/>
-                        <field name="delivery_country_price"/>
                     </group>
                 </xpath>
             </field>
