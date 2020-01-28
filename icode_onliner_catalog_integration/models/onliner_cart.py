@@ -1,8 +1,8 @@
 from odoo import fields, models, api
 
-# OnlinerCart(models.Model):
-# _name = 'onliner.cart'
 
+class OnlinerCart(models.Model):
+    _name = 'onliner.cart'
 
 # def_from_request():
 # summary_url = 'https://b2bapi.onliner.by/positions/{}?access-token={}'
@@ -98,14 +98,9 @@ def set_cart_value():
 
     total_info = 'Количество заказов: {}'.format(orders_data['total'])
 
-    page_info = ' Парамметры страницы:'\
-                '\nОграничение: {},'\
-                '\n Количество элементов: {},'\
-                '\nТекущий элемент: {},'\
-                '\n Последний элемент: {}\n'.format(orders_data['page']['limit'],
-                                                    orders_data['page']['items'],
-                                                    orders_data['page']['current'],
-                                                    orders_data['page']['last'])
+    page_info = '\nПарамметры страницы:\nОграничение: {},\n Количество элементов: {},\nТекущий элемент: {},\
+                 \n Последний элемент: {}\n'.format(orders_data['page']['limit'], orders_data['page']['items'],
+                                                    orders_data['page']['current'], orders_data['page']['last'])
 
     orders_info = '\nЗаказы:\n'
     for i in orders_data['orders']:
@@ -116,8 +111,10 @@ def set_cart_value():
                   \nОбщий комментарий пользователя к данному заказу: {},\nИмена товаров в заказе: {},\
                   \nID позиции в заказе: {}'.format(i['key'], i['status'], i['created_at'], i['updated_at'],
                                                     i['process_deadline'], i['process_time_left'], i['positions_count'],
-                                                    i['total_quantity'], i['order_cost'], i['comment'],
-                                                    i['product_names'], i['positions.entry_id']))
+                                                    i['total_quantity'], i['order_cost'], i['comment'], i['product_names'],
+                                                    i['positions.entry_id']))
 
+    full_info='{}{}{}'.format(total_info, page_info, orders_info)
+    print(full_info)
 
 
