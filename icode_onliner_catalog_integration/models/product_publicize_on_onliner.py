@@ -64,7 +64,7 @@ class OnlinerCatalog(models.Model):
                     "type": product.courier_delivery_price_ids[5].delivery_type,
                     "price": product.courier_delivery_price_ids[5].price}}
 
-            product_info = {
+            product_info = [{
                 "id": product_id,
                 "category": category,
                 "vendor": vendor,
@@ -85,7 +85,7 @@ class OnlinerCatalog(models.Model):
                 "isCredit": is_credit,
                 "stockStatus": "in_stock",
                 "courierDeliveryPrices": courier_delivery_price
-            }
+            }]
 
             data.append(product_info)
         return data

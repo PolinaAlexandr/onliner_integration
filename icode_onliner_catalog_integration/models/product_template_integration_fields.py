@@ -36,8 +36,8 @@ class ProductTemplateIntegrationFields(models.Model):
     importer = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
     producer = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
     vendor = fields.Many2one('res.company',  default=lambda self: self.env.company, ondelete='cascade', required=True)
-    is_cashless = fields.Boolean(string='Is Cashless')
-    is_credit = fields.Boolean(string='Is Credit')
+    is_cashless = fields.Boolean(string='Is Cashless') # Флаг предложения для юридических лиц (1 - для юридических, 0 - для физических)
+    is_credit = fields.Boolean(string='Is Credit') # Флаг доступности покупки в кредит (1 - можно, 0 - нет)
     service_centers = fields.Char(string='Service Centers', default='Some Address Here',  required=True)
     delivery_country_id = fields.Many2one('res.country', string='Country', domain=[('name', '=', 'Belarus')],
                                           default=lambda self: self.env.ref('base.by').id, required=True)
