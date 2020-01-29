@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="onliner_cart_orders_tree_view" model="ir.ui.view">
+        <field name="name">onliner.cart.tree.view</field>
+        <field name="model">onliner.cart</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="key"/>
+                <field name="status"/>
+                <field name="orders_info"/>
+                <field name="positions_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="onliner_cart_orders_form_view" model="ir.ui.view">
+        <field name="name">onliner.cart.form.view</field>
+        <field name="model">onliner.cart</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="key"/>
+                <field name="status"/>
+                <field name="orders_info"/>
+                <field name="positions_count"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="onliner_cart_orders_action" model="ir.actions.act_window">
+        <field name="name">Onliner Cart Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">onliner.cart</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="onliner_cart_orders_menu"
+        name="Onliner Cart Orders"
+        action="onliner_cart_orders_action"
+        parent="menu_sale_order"
+        sequence="5"/>
+</odoo>

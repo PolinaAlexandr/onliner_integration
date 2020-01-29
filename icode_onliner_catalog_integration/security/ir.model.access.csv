@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_onliner_region_settings,access_onliner_region_settings,model_onliner_region_settings,base.group_user,1,0,0,0
 access_product_onliner_region_settings_line,access_product_onliner_region_settings_line,model_product_onliner_region_settings_line,base.group_user,1,1,0,0
+access_onliner_cart,access_onliner_cart,model_onliner_cart,base.group_user,1,1,1,1
