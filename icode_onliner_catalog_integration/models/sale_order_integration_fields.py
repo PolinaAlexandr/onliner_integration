@@ -18,5 +18,6 @@ class SaleOrderIntegrationFields(models.Model):
     _inherit = 'sale.order'
 
     key = fields.Char('Onliner Order Key')
-    onliner_delivery_status = fields.Selection(STATUSES)
+    onliner_delivery_status = fields.Selection(STATUSES, default='1')
     updated_at = fields.Datetime('Last update date')
+    # prices_definition = fields.Monetary()

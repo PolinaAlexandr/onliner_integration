@@ -80,5 +80,5 @@ class ProductOnlinerRegionSettingsLine(models.Model):
     product_id = fields.Many2one('product.template', string='Courier Delivery Price')
     delivery_type = fields.Selection(DELIVERY_TYPE, required=True)
     currency_id = fields.Many2one('res.currency', domain=[('name', '=', 'BYN')],
-                                  default=lambda self: self.env.ref('base.BYN', required=True))
+                                  default=lambda self: self.env.ref('base.BYN'), required=True)
     price = fields.Monetary(currency_field='currency_id', reuired=True)
