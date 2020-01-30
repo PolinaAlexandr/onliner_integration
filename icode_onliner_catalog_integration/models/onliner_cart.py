@@ -28,16 +28,11 @@ class SaleOrderOnlinerKey(models.Model):
 class OnlinerCart(models.Model):
     _name = 'onliner.cart'
 
-    # key = fields.Char()
-    # status = fields.Selection(STATUSES)
-    # orders_info = fields.Text("Orders Info")
-    # positions_count = fields.Integer('Positions quantity')
-    # payment_type = fields.Selection(PAYMENT_TYPES)
-
     #TODO запрос на "списока" ордеров с онлайенра -> создать новые sale.orders с прокинутым уникальным ключем ->
     # запрос на информацию о конкретном заказе через ключ -> добавление дополнительной информации в SO ->
     # редектирование (обновление статусов заказа в зависимости от текущего статуса) ->
-    # кнопка для запроса на обновление статуса и обработчик ответов -> получение обновленного статуса оплаты(вероятнее всего через крон)
+    # кнопка для запроса на обновление статуса и обработчик ответов ->
+    # получение обновленного статуса оплаты(вероятнее всего через крон)
 
     def get_orders_info(self):
         products_ids = self.env['product.product']
