@@ -14,14 +14,16 @@
                     <button name="confirm_order" string="Confirm"
                             type="object" class="btn-primary"
                             attrs="{'invisible': [('onliner_delivery_state', '!=', 'processing')]}"/>
-                    <button name="ship_order" string="Ship"
-                            type="object" class="btn-primary"
+                    <button name="%(icode_onliner_catalog_integration.action_view_sale_order_ship_order_view)d"
+                            string="Ship Order"
+                            type="action" class="btn-primary"
                             attrs="{'invisible': [('onliner_delivery_state', '!=', 'confirmed')]}"/>
                     <button name="order_delivered" string="Successfully Delivered"
                             type="object" class="btn-primary"
                             attrs="{'invisible': [('onliner_delivery_state', '!=', 'shipping')]}"/>
-                    <button name="shop_cancel_order" string="Cancel Order"
-                            type="object" class="btn-primary"/>
+                    <button name="%(icode_onliner_catalog_integration.action_view_sale_order_shop_cancel_order_view)d"
+                            string="Cancel Order"
+                            type="action" class="btn-primary"/>
                 </xpath>
                 <xpath expr="//group[1]/group[2]" position="inside">
                    <field name="key" readonly="1"/>

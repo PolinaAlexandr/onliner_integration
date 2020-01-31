@@ -25,7 +25,7 @@ class OnlinerCart(models.Model):
                 },
                 "orders": [
                     {
-                        "key": "546445",
+                        "key": "43553",
                         "user_id": 1,
                         "contact": {
                             "name": "Пользователь Тестовый",
@@ -64,7 +64,7 @@ class OnlinerCart(models.Model):
                         "process_deadline": "2015-10-14T17:40:28+03:00",
                         "process_time_left": 60,
                         "is_new_flow": True,
-                        "status": "processing",
+                        "status": "confirmed",
                         "positions_count": 1,
                         "total_quantity": 3,
                         "order_cost": {

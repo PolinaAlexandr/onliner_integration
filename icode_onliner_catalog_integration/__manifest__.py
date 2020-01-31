@@ -17,11 +17,13 @@
     'data': [
         'data/res_config_parameter.xml',
         'security/ir.model.access.csv',
+        'wizards/ship_order_wizard_view.xml',
+        'wizards/shop_cancel_wizard_view.xml',
         'views/product_template_view_inherit.xml',
         'views/product_tree_view_publicize_action_button.xml',
         'views/product_onliner_region_settings_view.xml',
         'views/onliner_cart_view.xml',
-        'views/sale_order_onliner_integration.xml'
+        'views/sale_order_onliner_integration.xml',
     ],
     'post_init_hook': 'set_default_courier_delivery_price_ids'
 }

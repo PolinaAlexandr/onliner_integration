@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="order_ship_order_wizard" model="ir.ui.view">
+        <field name="name">sale.order.ship.order.wizard.form</field>
+        <field name="model">sale.order.ship.order.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="delivery_comment"/>
+                <footer>
+                    <button name="ship_order" type="object" string="OK"/>
+                    <button name="cancel" string="Cancel" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_view_sale_order_ship_order_view" model="ir.actions.act_window">
+        <field name="name">Add Delivery Comment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.ship.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
