@@ -21,5 +21,66 @@ class SaleOrderIntegrationFields(models.Model):
 
     key = fields.Char('Onliner Order Key')
     onliner_delivery_state = fields.Selection(STATUSES)
-    updated_at = fields.Datetime('Last update date')
-    # prices_definition = fields.Monetary()
+
+    @api.model
+    def process_order(self):
+        pass
+
+    @api.model
+    def confirm_order(self):
+        pass
+    # PATCH / orders / qz2wa
+    # Authorization: bearer < token >
+    # Accept: application / json;
+    # charset = utf - 8
+    # Content - Type: application / json;
+    # charset = utf - 8
+    # {
+    #     "status": "confirmed"
+    # }
+
+    @api.model
+    def ship_order(self):
+        pass
+
+    # PATCH / orders / qz2wa
+    # Authorization: bearer < token >
+    # Accept: application / json;
+    # charset = utf - 8
+    # Content - Type: application / json;
+    # charset = utf - 8
+    # {
+    #     "status": "shipping",
+    #     "delivery_comment": "Курьер будет у вас с 15:00 до 18:00"
+    # }
+
+    @api.model
+    def order_delivered(self):
+        pass
+        # PATCH / orders / qz2wa
+        # Authorization: bearer < token >
+        # Accept: application / json;
+        # charset = utf - 8
+        # Content - Type: application / json;
+        # charset = utf - 8
+        # {
+        #     "status": "confirmed"
+        # }
+
+    @api.model
+    def shop_cancel_order(self):
+        pass
+
+    # PATCH / orders / qz2wa
+    # Authorization: bearer < token >
+    # Accept: application / json;
+    # charset = utf - 8
+    # Content - Type: application / json;
+    # charset = utf - 8
+    # {
+    #     "status": "shop_canceled",
+    #     "reason": {
+    #         "id": 1,
+    #         "comment": "товара нет в наличии"
+    #     }
+    # }

@@ -7,6 +7,11 @@ from odoo import fields, models, api, exceptions, _
 class OnlinerCart(models.Model):
     _name = 'onliner.cart'
 
+    #TODO запрос на "списока" ордеров с онлайенра -> создать новые sale.orders с прокинутым уникальным ключем ->
+    # -> добавление дополнительной информации в SO(SO.line) ->
+    # (обновление статусов заказа в зависимости от текущего статуса) кнопки ->
+    # получение обновленного статуса оплаты(вероятнее всего через крон)
+
     @api.model
     def _get_orders_info(self):
         sale_order_ids = self.env['sale.order']
@@ -20,7 +25,7 @@ class OnlinerCart(models.Model):
                 },
                 "orders": [
                     {
-                        "key": "qz2wa",
+                        "key": "546445",
                         "user_id": 1,
                         "contact": {
                             "name": "Пользователь Тестовый",
@@ -59,7 +64,7 @@ class OnlinerCart(models.Model):
                         "process_deadline": "2015-10-14T17:40:28+03:00",
                         "process_time_left": 60,
                         "is_new_flow": True,
-                        "status": "shop_canceled",
+                        "status": "processing",
                         "positions_count": 1,
                         "total_quantity": 3,
                         "order_cost": {
@@ -136,7 +141,7 @@ class OnlinerCart(models.Model):
                                 },
                                 "user_comment": "комментарий к заказу",
                                 "product": {
-                                    "id": 31,
+                                    "id": 17,
                                     "key": "iphone6plus128gb",
                                     "name": "iPhone 6 Plus (128Gb)",
                                     "full_name": "Apple iPhone 6 Plus (128Gb)",
@@ -163,42 +168,35 @@ class OnlinerCart(models.Model):
                 onliner_delivery_state = item['status']
                 contact = item['contact']
                 partner_id = self.env['res.partner'].search([('email', '=', contact['email'])])
+                unique_key = self.env['sale.order'].search([('key', '=', onliner_order_key)])
                 if not partner_id:
                     partner_id = partner_id.create({
                         'name': contact['name'],
                         'email': contact['email'],
                         'phone': contact['phone'],
                     })
-                sale_order_id = sale_order_ids.create({
-                    'name': _('New'),
-                    'key': onliner_order_key,
-                    'partner_id': partner_id.id,
-                    # 'updated_at': datetime.strptime(update_date, "%n-%d-%Y %H:%M:%S"),
-                    'onliner_delivery_state': onliner_delivery_state,
-                })
-                for position in item['positions']:
-                    ordered_product_id = position['product']['id']
-                    product_id = self.env['product.product'].search([('id', '=', ordered_product_id)])
-                    if product_id:
-                        # states = sale_order_id._fields['onliner_delivery_state'].selection
-                       
-                        self.env['sale.order.line'].create({
-                            'product_id': product_id.id,
-                            'order_id': sale_order_id.id,
-                            'name': product_id.product_tmpl_id.name,
-                            'product_code': product_id.default_code,
-                            'product_uom_qty': position['quantity'],
-                            'price_unit': product_id.lst_price,
-                        })
-                sale_order_ids += sale_order_id
+                if not unique_key:
+                    sale_order_id = sale_order_ids.create({
+                        'name': _('New'),
+                        'key': onliner_order_key,
+                        'partner_id': partner_id.id,
+                        'onliner_delivery_state': onliner_delivery_state,
+                    })
+                    for position in item['positions']:
+                        ordered_product_id = position['product']['id']
+                        product_id = self.env['product.product'].search([('id', '=', ordered_product_id)])
+                        if product_id:
+                            self.env['sale.order.line'].create({
+                                'product_id': product_id.id,
+                                'order_id': sale_order_id.id,
+                                'name': product_id.product_tmpl_id.name,
+                                'product_code': product_id.default_code,
+                                'product_uom_qty': position['quantity'],
+                                'price_unit': product_id.lst_price,
+                            })
+                    sale_order_ids += sale_order_id
 
-
-    #TODO запрос на "списока" ордеров с онлайенра -> создать новые sale.orders с прокинутым уникальным ключем ->
-    # запрос на информацию о конкретном заказе через ключ -> добавление дополнительной информации в SO ->
-    # редектирование (обновление статусов заказа в зависимости от текущего статуса) ->
-    # кнопка для запроса на обновление статуса и обработчик ответов ->
-    # получение обновленного статуса оплаты(вероятнее всего через крон)
-
+    # @api.model
     # def get_orders_info(self):
     #     sale_order_ids = self.env['sale.order']
     #     url = 'https://cart.api.onliner.by/oreders/?include=shop,positions'
@@ -208,31 +206,28 @@ class OnlinerCart(models.Model):
     #     response_request = requests.get(url, headers)
     #     response_summary = json.loads(response_request.content.decode('utf-8'))
     #     if response_summary:
-    #         prdct_ids = []
-    #             keys = []
-    #             update_dates = []
-    #             for i in full_orders_data['orders']:
-    #                 key = i['key']
-    #                 # update_date = i['update_at']
-    #                 # update_dates.append(update_date)
-    #                 contact = i['contact']
-    #                 partner_id = self.env['res.partner'].search([('email', '=', contact['email'])])
-    #                 if not partner_id:
-    #                     partner_id = partner_id.create({
-    #                         'name': contact['name'],
-    #                         'email': contact['email'],
-    #                         'phone': contact['phone'],
-    #                     })
+    #         for item in response_summary['orders']:
+    #             onliner_order_key = item['key']
+    #             onliner_delivery_state = item['status']
+    #             contact = item['contact']
+    #             partner_id = self.env['res.partner'].search([('email', '=', contact['email'])])
+    #             unique_key = self.env['sale.order'].search([('key', '=', onliner_order_key)])
+    #             if not partner_id:
+    #                 partner_id = partner_id.create({
+    #                     'name': contact['name'],
+    #                     'email': contact['email'],
+    #                     'phone': contact['phone'],
+    #                 })
+    #             if not unique_key:
     #                 sale_order_id = sale_order_ids.create({
     #                     'name': _('New'),
-    #                     'key': key,
-    #                     'partner_id': partner_id.id
-    #                     # 'updated_at': datetime.strptime(update_date, "%n-%d-%Y %H:%M:%S"),
-    #                     # 'onliner_delivery_status':
+    #                     'key': onliner_order_key,
+    #                     'partner_id': partner_id.id,
+    #                     'onliner_delivery_state': onliner_delivery_state,
     #                 })
-    #                 for position in i['positions']:
-    #                     prdct_id = position['product']['id']
-    #                     product_id = self.env['product.product'].search([('id', '=', prdct_id)])
+    #                 for position in item['positions']:
+    #                     ordered_product_id = position['product']['id']
+    #                     product_id = self.env['product.product'].search([('id', '=', ordered_product_id)])
     #                     if product_id:
     #                         self.env['sale.order.line'].create({
     #                             'product_id': product_id.id,
@@ -243,31 +238,3 @@ class OnlinerCart(models.Model):
     #                             'price_unit': product_id.lst_price,
     #                         })
     #                 sale_order_ids += sale_order_id
-
-    # # TODO нужна ли отформатированная информация(на данный момент используется только поле 'key' и то из исходного словаря)
-        # total_info = 'Количество заказов: {}'.format(orders_data['total'])
-        #
-        # page_info = '\nПарамметры страницы:\nОграничение: {},\n Количество элементов: {},\nТекущий элемент: {},\
-        #              \n Последний элемент: {}\n'.format(orders_data['page']['limit'], orders_data['page']['items'],
-        #                                                 orders_data['page']['current'], orders_data['page']['last'])
-        #
-        # orders_info = '\nЗаказы:\n'
-        # for i in orders_data['orders']:
-        #     orders_info += ('\nУникальный код заказа: {},\nСтроковый код статуса: {},\nВремя создания заказа: {},\
-        #               \nВремя изменения заказа: {},\nВремя, до которого магазин должен обработать заказ: {},\
-        #               \nСколько секунд осталось до окончания обработки заказа или 0, если время обработки истекло: {},\
-        #               \nКоличество позиций в заказе: {}, Общее количество товаров в заказе: {},\
-        #               \nОбщая стоимость заказа: {},\nОбщий комментарий пользователя к данному заказу: {},\
-        #               \nИмена товаров в заказе: {},\nID позиции в заказе: {}'.format(i['key'], i['status'],
-        #                                                                              i['created_at'], i['updated_at'],
-        #                                                                              i['process_deadline'],
-        #                                                                              i['process_time_left'],
-        #                                                                              i['positions_count'],
-        #                                                                              i['total_quantity'], i['order_cost'],
-        #                                                                              i['comment'], i['product_names'],
-        #                                                                              i['positions.entry_id']))
-        #
-        # full_info = '{}{}{}'.format(total_info, page_info, orders_info)
-        # print(full_info)
-
-
