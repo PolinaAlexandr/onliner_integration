@@ -1,10 +1,12 @@
 from odoo import fields, models, api
 
 STATUSES = [
-    ('1', 'new'),
-    ('2', 'processing'),
-    ('3', 'confirmed'),
-    ('4', 'shipping')
+    ('new', 'new'),
+    ('processing', 'processing'),
+    ('confirmed', 'confirmed'),
+    ('shipping', 'shipping'),
+    ('delivered', 'delivered'),
+    ('shop_canceled', 'shop canceled')
 ]
 
 PAYMENT_TYPES = [
@@ -18,6 +20,6 @@ class SaleOrderIntegrationFields(models.Model):
     _inherit = 'sale.order'
 
     key = fields.Char('Onliner Order Key')
-    onliner_delivery_status = fields.Selection(STATUSES, default='1')
+    onliner_delivery_state = fields.Selection(STATUSES)
     updated_at = fields.Datetime('Last update date')
     # prices_definition = fields.Monetary()

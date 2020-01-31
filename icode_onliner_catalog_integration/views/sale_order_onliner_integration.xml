@@ -15,8 +15,7 @@
                 </xpath>
 
                 <xpath expr="//group[1]/group[2]" position="inside">
-                        <field name="onliner_delivery_status"/>
-                        <field name=""/>
+                        <field name="onliner_delivery_state"/>
                 </xpath>
             </field>
         </record>

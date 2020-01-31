@@ -59,7 +59,7 @@ class OnlinerCart(models.Model):
                         "process_deadline": "2015-10-14T17:40:28+03:00",
                         "process_time_left": 60,
                         "is_new_flow": True,
-                        "status": "new",
+                        "status": "shop_canceled",
                         "positions_count": 1,
                         "total_quantity": 3,
                         "order_cost": {
@@ -160,7 +160,7 @@ class OnlinerCart(models.Model):
         if full_orders_data:
             for item in full_orders_data['orders']:
                 onliner_order_key = item['key']
-                onliner_delivery_status = item['status']
+                onliner_delivery_state = item['status']
                 contact = item['contact']
                 partner_id = self.env['res.partner'].search([('email', '=', contact['email'])])
                 if not partner_id:
@@ -172,15 +172,16 @@ class OnlinerCart(models.Model):
                 sale_order_id = sale_order_ids.create({
                     'name': _('New'),
                     'key': onliner_order_key,
-                    'partner_id': partner_id.id
+                    'partner_id': partner_id.id,
                     # 'updated_at': datetime.strptime(update_date, "%n-%d-%Y %H:%M:%S"),
+                    'onliner_delivery_state': onliner_delivery_state,
                 })
                 for position in item['positions']:
                     ordered_product_id = position['product']['id']
                     product_id = self.env['product.product'].search([('id', '=', ordered_product_id)])
                     if product_id:
-                        # delivery_status = sale_order_id._fields['onliner_delivery_status'].selection  #
-                        # sale_order_id.update({'onliner_delivery_status': i for i in delivery_status if i[0] ==  })
+                        # states = sale_order_id._fields['onliner_delivery_state'].selection
+                       
                         self.env['sale.order.line'].create({
                             'product_id': product_id.id,
                             'order_id': sale_order_id.id,
