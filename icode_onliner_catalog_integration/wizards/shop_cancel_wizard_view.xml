@@ -5,13 +5,16 @@
         <field name="model">sale.order.shop.cancel.order.wizard</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="get_shop_cancel_order_reasons" type="object" string="Get Valid Reasons"/>
+                </header>
                 <group>
                     <field name="reason_id"/>
                     <field name="comment"/>
                 </group>
                 <footer>
-                    <button name="" type="object" string="OK"/>
-                    <button name="cancel" string="Cancel" special="cancel" class="oe_link"/>
+                    <button name="shop_cancel_order" type="object" string="OK" class="btn-primary"/>
+                    <button name="cancel" string="Cancel" special="cancel" class="btn-primary"/>
                 </footer>
             </form>
         </field>
