@@ -27,8 +27,8 @@ class ShopCancelOrderWizard(models.TransientModel):
     def shop_cancel_order(self):
         pass
         # active_id = self._context.get('active_id')
-        # order_id = self.env['sale.order'].browse(active_id).id
-        # key = order_id.key
+        # order = self.env['sale.order'].browse(active_id)
+        # key = order.key
         # url = 'https://cart.api.onliner.by/oreders/{}'.format(key)
         # token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
         # headers = {
