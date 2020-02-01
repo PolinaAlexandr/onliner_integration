@@ -11,19 +11,13 @@ STATUSES = [
     ('shop_canceled', 'shop canceled')
 ]
 
-PAYMENT_TYPES = [
-    ('1', 'cash'),
-    ('2', 'terminal'),
-    ('3', 'cashless')
-]
-
 
 class SaleOrderIntegrationFields(models.Model):
     _inherit = 'sale.order'
 
     key = fields.Char('Onliner Order Key')
     onliner_delivery_state = fields.Selection(STATUSES)
-    payment_type = fields.Selection(PAYMENT_TYPES)
+    payment_type = fields.Char(string='Payment Type', readonly=1)
 
     @api.model
     def process_order(self):
