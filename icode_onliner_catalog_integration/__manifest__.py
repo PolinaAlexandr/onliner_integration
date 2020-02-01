@@ -19,6 +19,7 @@
         'security/ir.model.access.csv',
         'wizards/ship_order_wizard_view.xml',
         'wizards/shop_cancel_wizard_view.xml',
+        'wizards/change_order_payment_type_wizard_view.xml',
         'views/product_template_view_inherit.xml',
         'views/product_tree_view_publicize_action_button.xml',
         'views/product_onliner_region_settings_view.xml',
