@@ -23,6 +23,7 @@ class SaleOrderIntegrationFields(models.Model):
 
     key = fields.Char('Onliner Order Key')
     onliner_delivery_state = fields.Selection(STATUSES)
+    payment_type = fields.Selection(PAYMENT_TYPES)
 
     @api.model
     def process_order(self):

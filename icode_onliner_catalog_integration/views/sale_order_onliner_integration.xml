@@ -24,9 +24,13 @@
                     <button name="%(icode_onliner_catalog_integration.action_view_sale_order_shop_cancel_order_view)d"
                             string="Cancel Order"
                             type="action" class="btn-primary"/>
+                    <button name="%(icode_onliner_catalog_integration.action_view_sale_order_change_order_payment_type_view)d"
+                            string="Change Payment Type"
+                            type="action" class="btn-primary"/>
                 </xpath>
                 <xpath expr="//group[1]/group[2]" position="inside">
                    <field name="key" readonly="1"/>
+                    <field name="payment_type"/>
                 </xpath>
             </field>
         </record>

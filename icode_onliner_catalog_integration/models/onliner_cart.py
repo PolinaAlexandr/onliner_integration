@@ -15,6 +15,14 @@ class OnlinerCart(models.Model):
     @api.model
     def _get_orders_info(self):
         sale_order_ids = self.env['sale.order']
+        invalid_status = {
+            "message": "Validation failed",
+            "errors": {
+                "status": [
+                    "Выбранное значение поля ошибочно"
+                ]
+            }
+        }
         full_orders_data = {
                 "total": 3,
                 "page": {
@@ -167,6 +175,7 @@ class OnlinerCart(models.Model):
                 onliner_order_key = item['key']
                 onliner_delivery_state = item['status']
                 contact = item['contact']
+                payment_type = item['payment']['type']
                 partner_id = self.env['res.partner'].search([('email', '=', contact['email'])])
                 unique_key = self.env['sale.order'].search([('key', '=', onliner_order_key)])
                 if not partner_id:
@@ -181,6 +190,7 @@ class OnlinerCart(models.Model):
                         'key': onliner_order_key,
                         'partner_id': partner_id.id,
                         'onliner_delivery_state': onliner_delivery_state,
+                        'payment_type': payment_type,
                     })
                     for position in item['positions']:
                         ordered_product_id = position['product']['id']
@@ -204,7 +214,7 @@ class OnlinerCart(models.Model):
     #     headers = {'Accept': 'application/json',
     #                'Authorization': 'Bearer {}'.format(token)}
     #     response_request = requests.get(url, headers)
-    #     response_summary = json.loads(response_request.content.decode('utf-8'))
+    #     shop_cancel_order
     #     if response_summary:
     #         for item in response_summary['orders']:
     #             onliner_order_key = item['key']
