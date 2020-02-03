@@ -13,4 +13,5 @@
         action="onliner_cart_orders_action"
         parent="sale.menu_sale_order"
         sequence="5"/>
+
 </odoo>

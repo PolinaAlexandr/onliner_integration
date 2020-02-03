@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="cron_update_onliners_sale_orders" model="ir.cron">
+            <field name="name">Update Onliner's sale orders</field>
+            <field name="model_id" ref="model_onliner_cart"/>
+            <field name="state">code</field>
+            <field name="code">model._get_orders_info()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+    </data>
+</odoo>

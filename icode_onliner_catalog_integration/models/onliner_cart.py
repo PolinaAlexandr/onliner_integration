@@ -15,14 +15,6 @@ class OnlinerCart(models.Model):
     @api.model
     def _get_orders_info(self):
         sale_order_ids = self.env['sale.order']
-        invalid_status = {
-            "message": "Validation failed",
-            "errors": {
-                "status": [
-                    "Выбранное значение поля ошибочно"
-                ]
-            }
-        }
         full_orders_data = {
                 "total": 3,
                 "page": {
@@ -72,7 +64,7 @@ class OnlinerCart(models.Model):
                         "process_deadline": "2015-10-14T17:40:28+03:00",
                         "process_time_left": 60,
                         "is_new_flow": True,
-                        "status": "confirmed",
+                        "status": "new",
                         "positions_count": 1,
                         "total_quantity": 3,
                         "order_cost": {
@@ -206,14 +198,14 @@ class OnlinerCart(models.Model):
                             })
                     sale_order_ids += sale_order_id
                 else:
-                    sale_order_id = sale_order_ids.browse([('key', '=', unique_key)])
+                    sale_order_id = sale_order_ids.search([('key', '=', onliner_order_key)])
                     sale_order_id.update({
                         'onliner_delivery_state': onliner_delivery_state,
                         'payment_type': payment_type,
                     })
 
     # @api.model
-    # def get_orders_info(self):
+    # def _get_orders_info(self):
     #     sale_order_ids = self.env['sale.order']
     #     url = 'https://cart.api.onliner.by/oreders/?include=shop,positions'
     #     token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
@@ -222,7 +214,7 @@ class OnlinerCart(models.Model):
     #     response_request = requests.get(url, headers)
     #     shop_cancel_order
     #     if response_summary:
-    #         for item in full_orders_data['orders']:
+    #         for item in response_summary['orders']:
     #                 onliner_order_key = item['key']
     #                 onliner_delivery_state = item['status']
     #                 contact = item['contact']
@@ -257,7 +249,7 @@ class OnlinerCart(models.Model):
     #                             })
     #                     sale_order_ids += sale_order_id
     #                 else:
-    #                     sale_order_id = sale_order_ids.browse([('key', '=', unique_key)])
+    #                     sale_order_id = sale_order_ids.search([('key', '=', onliner_order_key)])
     #                     sale_order_id.update({
     #                         'onliner_delivery_state': onliner_delivery_state,
     #                         'payment_type': payment_type,

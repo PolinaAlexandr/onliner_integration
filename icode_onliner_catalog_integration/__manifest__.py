@@ -16,6 +16,7 @@
     ],
     'data': [
         'data/res_config_parameter.xml',
+        'data/onliner_cart_cron.xml',
         'security/ir.model.access.csv',
         'wizards/ship_order_wizard_view.xml',
         'wizards/shop_cancel_wizard_view.xml',
