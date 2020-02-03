@@ -14,7 +14,7 @@ class ChangeOrderPaymentTypeWizard(models.TransientModel):
 
     payment_type = fields.Selection(PAYMENT_TYPES, default=1)
 
-    @api.model
+    # @api.model
     def change_order_payment_type(self):
         pass
         # active_id = self._context.get('active_id')

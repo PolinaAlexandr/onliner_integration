@@ -6,9 +6,9 @@ from odoo import fields, models, api, exceptions, _
 class ShipOrderWizard(models.TransientModel):
     _name = 'sale.order.ship.order.wizard'
 
-    delivery_comment = fields.Char()
+    delivery_comment = fields.Char(default="Комментарий к заказу", required=True)
 
-    @api.model
+    # @api.model
     def ship_order(self):
         pass
         # active_id = self._context.get('active_id')

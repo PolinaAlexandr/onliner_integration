@@ -23,7 +23,7 @@ class ShopCancelOrderWizard(models.TransientModel):
     #     else:
     #         pass
 
-    @api.model
+    # @api.model
     def shop_cancel_order(self):
         pass
         # active_id = self._context.get('active_id')
