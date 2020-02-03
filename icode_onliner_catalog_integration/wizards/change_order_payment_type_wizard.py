@@ -12,7 +12,7 @@ PAYMENT_TYPES = [
 class ChangeOrderPaymentTypeWizard(models.TransientModel):
     _name = 'sale.order.change.order.payment.type.wizard'
 
-    payment_type = fields.Selection(PAYMENT_TYPES)
+    payment_type = fields.Selection(PAYMENT_TYPES, default=1)
 
     @api.model
     def change_order_payment_type(self):

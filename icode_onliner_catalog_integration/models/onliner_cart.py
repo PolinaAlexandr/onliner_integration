@@ -168,6 +168,7 @@ class OnlinerCart(models.Model):
                 onliner_delivery_state = item['status']
                 contact = item['contact']
                 payment_type = item['payment']['type']
+                is_new_flow = item['is_new_flow']
                 partner_id = self.env['res.partner'].search([('email', '=', contact['email'])])
                 unique_key = self.env['sale.order'].search([('key', '=', onliner_order_key)])
                 if not partner_id:
@@ -183,6 +184,7 @@ class OnlinerCart(models.Model):
                         'partner_id': partner_id.id,
                         'onliner_delivery_state': onliner_delivery_state,
                         'payment_type': payment_type,
+                        'is_new_flow': is_new_flow
                     })
                     for position in item['positions']:
                         ordered_product_id = position['product']['id']
@@ -202,6 +204,7 @@ class OnlinerCart(models.Model):
                     sale_order_id.update({
                         'onliner_delivery_state': onliner_delivery_state,
                         'payment_type': payment_type,
+                        'is_new_flow': is_new_flow,
                     })
 
     # @api.model

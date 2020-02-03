@@ -9,19 +9,19 @@ class ShopCancelOrderWizard(models.TransientModel):
     reason_id = fields.Integer()
     comment = fields.Char()
 
-    @api.model
-    def get_shop_cancel_order_reasons(self):
-        url = 'https://cart.api.onliner.by/resources/shop-cancel-reasons'
-        headers = {
-            'Accept': 'application/json',
-        }
-        response_request = requests.get(url=url, headers=headers)
-        response_summary = json.loads(response_request.content.decode('utf-8'))
-        if response_summary:
-            self.reason_id = response_summary['id']
-            self.comment = response_summary['text']
-        else:
-            pass
+    # def get_shop_cancel_order_reasons(self):
+    #     url = 'https://cart.api.onliner.by/resources/shop-cancel-reasons'
+    #     headers = {
+    #         'Accept': 'application/json',
+    #     }
+    #     response_request = requests.get(url=url, headers=headers)
+    #     response_summary = json.loads(response_request.content.decode('utf-8'))
+    #     if response_summary:
+    #         for item in response_summary:
+    #             self.reason_id = item['id']
+    #             self.comment = item['text']
+    #     else:
+    #         pass
 
     @api.model
     def shop_cancel_order(self):
