@@ -15,7 +15,7 @@ STATUSES = [
 class SaleOrderIntegrationFields(models.Model):
     _inherit = 'sale.order'
 
-    key = fields.Char('Onliner Order Key')
+    key = fields.Char('Onliner Order Key', readonly="1")
     onliner_delivery_state = fields.Selection(STATUSES)
     payment_type = fields.Char(string='Payment Type', readonly=1)
 
@@ -25,7 +25,7 @@ class SaleOrderIntegrationFields(models.Model):
         # active_id = self._context.get('active_id')
         # order_id = self.env['sale.order'].browse(active_id).id
         # key = order_id.key
-        # url = 'https://cart.api.onliner.by/oreders/{}'.format(key)
+        # url = 'https://cart.api.onliner.by/orders/{}'.format(key)
         # token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
         # headers = {
         #     'Accept': 'application/json',
@@ -46,7 +46,7 @@ class SaleOrderIntegrationFields(models.Model):
         # active_id = self._context.get('active_id')
         # order_id = self.env['sale.order'].browse(active_id).id
         # key = order_id.key
-        # url = 'https://cart.api.onliner.by/oreders/{}'.format(key)
+        # url = 'https://cart.api.onliner.by/orders/{}'.format(key)
         # token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
         # headers = {
         #     'Accept': 'application/json',
@@ -67,7 +67,7 @@ class SaleOrderIntegrationFields(models.Model):
         # active_id = self._context.get('active_id')
         # order_id = self.env['sale.order'].browse(active_id).id
         # key = order_id.key
-        # url = 'https://cart.api.onliner.by/oreders/{}'.format(key)
+        # url = 'https://cart.api.onliner.by/orders/{}'.format(key)
         # token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
         # headers = {
         #     'Accept': 'application/json',

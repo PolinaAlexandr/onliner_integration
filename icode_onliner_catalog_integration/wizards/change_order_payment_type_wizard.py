@@ -21,7 +21,7 @@ class ChangeOrderPaymentTypeWizard(models.TransientModel):
         # order = self.env['sale.order'].browse(active_id)
         # key = order.key
         # state = order.payment_type
-        # url = 'https://cart.api.onliner.by/oreders/{}/change-payment-type'.format(key)
+        # url = 'https://cart.api.onliner.by/orders/{}/change-payment-type'.format(key)
         # token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
         # headers = {
         #     'Accept': 'application/json',

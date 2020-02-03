@@ -14,7 +14,7 @@ class ShipOrderWizard(models.TransientModel):
         # active_id = self._context.get('active_id')
         # order = self.env['sale.order'].browse(active_id)
         # key = order.key
-        # url = 'https://cart.api.onliner.by/oreders/{}'.format(key)
+        # url = 'https://cart.api.onliner.by/orders/{}'.format(key)
         # token = self.env['ir.config_parameter'].sudo().get_param('icode_onliner_by_integration.token', default='')
         # headers = {
         #     'Accept': 'application/json',

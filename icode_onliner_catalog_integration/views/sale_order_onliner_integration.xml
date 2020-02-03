@@ -26,10 +26,11 @@
                             type="action" class="btn-primary"/>
                     <button name="%(icode_onliner_catalog_integration.action_view_sale_order_change_order_payment_type_view)d"
                             string="Change Payment Type"
-                            type="action" class="btn-primary"/>
+                            type="action" class="btn-primary"
+                            attrs="{'invisible': [('onliner_delivery_state', '!=', 'confirmed')]}"/>
                 </xpath>
                 <xpath expr="//group[1]/group[2]" position="inside">
-                   <field name="key" readonly="1"/>
+                   <field name="key"/>
                     <field name="payment_type"/>
                 </xpath>
             </field>

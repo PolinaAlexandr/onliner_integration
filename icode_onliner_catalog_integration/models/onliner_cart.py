@@ -33,7 +33,7 @@ class OnlinerCart(models.Model):
                 },
                 "orders": [
                     {
-                        "key": "43553",
+                        "key": "4355378",
                         "user_id": 1,
                         "contact": {
                             "name": "Пользователь Тестовый",
@@ -205,6 +205,12 @@ class OnlinerCart(models.Model):
                                 'price_unit': product_id.lst_price,
                             })
                     sale_order_ids += sale_order_id
+                else:
+                    sale_order_id = sale_order_ids.browse([('key', '=', unique_key)])
+                    sale_order_id.update({
+                        'onliner_delivery_state': onliner_delivery_state,
+                        'payment_type': payment_type,
+                    })
 
     # @api.model
     # def get_orders_info(self):
@@ -216,35 +222,43 @@ class OnlinerCart(models.Model):
     #     response_request = requests.get(url, headers)
     #     shop_cancel_order
     #     if response_summary:
-    #         for item in response_summary['orders']:
-    #             onliner_order_key = item['key']
-    #             onliner_delivery_state = item['status']
-    #             contact = item['contact']
-    #             partner_id = self.env['res.partner'].search([('email', '=', contact['email'])])
-    #             unique_key = self.env['sale.order'].search([('key', '=', onliner_order_key)])
-    #             if not partner_id:
-    #                 partner_id = partner_id.create({
-    #                     'name': contact['name'],
-    #                     'email': contact['email'],
-    #                     'phone': contact['phone'],
-    #                 })
-    #             if not unique_key:
-    #                 sale_order_id = sale_order_ids.create({
-    #                     'name': _('New'),
-    #                     'key': onliner_order_key,
-    #                     'partner_id': partner_id.id,
-    #                     'onliner_delivery_state': onliner_delivery_state,
-    #                 })
-    #                 for position in item['positions']:
-    #                     ordered_product_id = position['product']['id']
-    #                     product_id = self.env['product.product'].search([('id', '=', ordered_product_id)])
-    #                     if product_id:
-    #                         self.env['sale.order.line'].create({
-    #                             'product_id': product_id.id,
-    #                             'order_id': sale_order_id.id,
-    #                             'name': product_id.product_tmpl_id.name,
-    #                             'product_code': product_id.default_code,
-    #                             'product_uom_qty': position['quantity'],
-    #                             'price_unit': product_id.lst_price,
-    #                         })
-    #                 sale_order_ids += sale_order_id
+    #         for item in full_orders_data['orders']:
+    #                 onliner_order_key = item['key']
+    #                 onliner_delivery_state = item['status']
+    #                 contact = item['contact']
+    #                 payment_type = item['payment']['type']
+    #                 partner_id = self.env['res.partner'].search([('email', '=', contact['email'])])
+    #                 unique_key = self.env['sale.order'].search([('key', '=', onliner_order_key)])
+    #                 if not partner_id:
+    #                     partner_id = partner_id.create({
+    #                         'name': contact['name'],
+    #                         'email': contact['email'],
+    #                         'phone': contact['phone'],
+    #                     })
+    #                 if not unique_key:
+    #                     sale_order_id = sale_order_ids.create({
+    #                         'name': _('New'),
+    #                         'key': onliner_order_key,
+    #                         'partner_id': partner_id.id,
+    #                         'onliner_delivery_state': onliner_delivery_state,
+    #                         'payment_type': payment_type,
+    #                     })
+    #                     for position in item['positions']:
+    #                         ordered_product_id = position['product']['id']
+    #                         product_id = self.env['product.product'].search([('id', '=', ordered_product_id)])
+    #                         if product_id:
+    #                             self.env['sale.order.line'].create({
+    #                                 'product_id': product_id.id,
+    #                                 'order_id': sale_order_id.id,
+    #                                 'name': product_id.product_tmpl_id.name,
+    #                                 'product_code': product_id.default_code,
+    #                                 'product_uom_qty': position['quantity'],
+    #                                 'price_unit': product_id.lst_price,
+    #                             })
+    #                     sale_order_ids += sale_order_id
+    #                 else:
+    #                     sale_order_id = sale_order_ids.browse([('key', '=', unique_key)])
+    #                     sale_order_id.update({
+    #                         'onliner_delivery_state': onliner_delivery_state,
+    #                         'payment_type': payment_type,
+    #                     })
