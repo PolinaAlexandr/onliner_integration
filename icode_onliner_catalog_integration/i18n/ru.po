@@ -1,0 +1,519 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* icode_onliner_catalog_integration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-03 11:13+0000\n"
+"PO-Revision-Date: 2020-02-03 11:13+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__warranty__2
+msgid "12 months"
+msgstr "12 месяцев"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__warranty__3
+msgid "24 month"
+msgstr "24 месяцев"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.actions.act_window,name:icode_onliner_catalog_integration.action_view_sale_order_ship_order_view
+msgid "Add Delivery Comment"
+msgstr "Добавить комментарий к доставке"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.actions.act_window,name:icode_onliner_catalog_integration.action_view_sale_order_shop_cancel_order_view
+msgid "Add Reasons of Cancellation"
+msgstr "Добавить причину отмены"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__name__brest_region
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__name__brest_region
+msgid "Brest Region"
+msgstr "Брестская Область"
+
+#. module: icode_onliner_catalog_integration
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.order_change_order_payment_type_wizard
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.order_ship_order_wizard
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.order_shop_cancel_order_wizard
+msgid "Cancel"
+msgstr "Отменить"
+
+#. module: icode_onliner_catalog_integration
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.sale_order_onliner_integration_view
+msgid "Cancel Order"
+msgstr "Отменить заказ"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.actions.act_window,name:icode_onliner_catalog_integration.action_view_sale_order_change_order_payment_type_view
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.sale_order_onliner_integration_view
+msgid "Change Payment Type"
+msgstr "Изменить тип оплаты"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard__comment
+msgid "Comment"
+msgstr "Комментарий"
+
+#. module: icode_onliner_catalog_integration
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.sale_order_onliner_integration_view
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__delivery_country_id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__delivery_country_id
+msgid "Country"
+msgstr "Страна"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__product_id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__courier_delivery_price_ids
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__courier_delivery_price_ids
+msgid "Courier Delivery Price"
+msgstr "Стоимость региональной доставки"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_cart__create_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__create_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__create_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_change_order_payment_type_wizard__create_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_ship_order_wizard__create_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_cart__create_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__create_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__create_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_change_order_payment_type_wizard__create_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_ship_order_wizard__create_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__currency_id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__currency_id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__currency_id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_ship_order_wizard__delivery_comment
+msgid "Delivery Comment"
+msgstr "Комментарий к доставке"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__delivery_country_price
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__delivery_country_price
+msgid "Delivery Country Price"
+msgstr "Цена доставки по стране"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__delivery_country_time
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__delivery_country_time
+msgid "Delivery Country Time"
+msgstr "Время доставки по стране"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__delivery_town_price
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__delivery_town_price
+msgid "Delivery Town Price"
+msgstr "Стоимость доставки по городу"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__delivery_town_time
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__delivery_town_time
+msgid "Delivery Town Time"
+msgstr "Время доствки по городу"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__delivery_type
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__delivery_type
+msgid "Delivery Type"
+msgstr "Тип доставки"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_cart__display_name
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__display_name
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__display_name
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_change_order_payment_type_wizard__display_name
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_ship_order_wizard__display_name
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__exploitation_period
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__exploitation_period
+msgid "Exploitation Period"
+msgstr "Гарантийный срок эксплуатации"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__extra_description
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__extra_description
+msgid "Extra Description"
+msgstr "Текстовое описание"
+
+#. module: icode_onliner_catalog_integration
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.order_shop_cancel_order_wizard
+msgid "Get Valid Reasons"
+msgstr "Получить список причин"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__name__gomel_region
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__name__gomel_region
+msgid "Gomel Region"
+msgstr "Гомельская Область"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__name__gordno_region
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__name__gordno_region
+msgid "Gordno Region"
+msgstr "Гродненская область"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_cart__id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_change_order_payment_type_wizard__id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_ship_order_wizard__id
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__importer
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__importer
+msgid "Importer"
+msgstr "Импортер"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__is_cashless
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__is_cashless
+msgid "Is Cashless"
+msgstr "Предложение для юридических лиц"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__is_credit
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__is_credit
+msgid "Is Credit"
+msgstr "Покупка в кредит"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order__is_new_flow
+msgid "Is New Flow"
+msgstr "Оформлен по новому жизненному циклу"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_cart____last_update
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings____last_update
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line____last_update
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_change_order_payment_type_wizard____last_update
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_ship_order_wizard____last_update
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard____last_update
+msgid "Last Modified on"
+msgstr "Время последнего изменения"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_cart__write_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__write_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__write_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_change_order_payment_type_wizard__write_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_ship_order_wizard__write_uid
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Время последнего обновления"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_cart__write_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__write_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__write_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_change_order_payment_type_wizard__write_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_ship_order_wizard__write_date
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__name__minsk_region
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__name__minsk_region
+msgid "Minsk Region"
+msgstr "Минская область"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__name__mogilev_region
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__name__mogilev_region
+msgid "Mogilev Region"
+msgstr "Могилевская область"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__name
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__name
+msgid "Name"
+msgstr "Название"
+
+#. module: icode_onliner_catalog_integration
+#: code:addons/icode_onliner_catalog_integration/models/onliner_cart.py:0
+#, python-format
+msgid "New"
+msgstr "Новый"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__warranty__1
+msgid "No Warranty"
+msgstr "Нет гарантии"
+
+#. module: icode_onliner_catalog_integration
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.order_change_order_payment_type_wizard
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.order_ship_order_wizard
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.order_shop_cancel_order_wizard
+msgid "OK"
+msgstr "Подтвердить"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__delivery_country_time__1
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__delivery_town_time__1
+msgid "One day"
+msgstr "В течении деня"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__delivery_country_time__4
+msgid "One week"
+msgstr "В течении недели"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.actions.server,name:icode_onliner_catalog_integration.onliner_cart_orders_action
+#: model:ir.ui.menu,name:icode_onliner_catalog_integration.onliner_cart_orders_menu
+msgid "Onliner Cart Orders"
+msgstr "Заказы из каталога Onliner.by"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order__onliner_delivery_state
+msgid "Onliner Delivery State"
+msgstr "Статус доставки Onliner.by"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order__key
+msgid "Onliner Order Key"
+msgstr "Код заказа на Onliner.by"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.actions.act_window,name:icode_onliner_catalog_integration.onliner_region_settings_action
+#: model:ir.ui.menu,name:icode_onliner_catalog_integration.onliner_region_settings_menu
+msgid "Onliner Region Settings"
+msgstr "Региональные настройки для Onliner.by"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order__payment_type
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_change_order_payment_type_wizard__payment_type
+msgid "Payment Type"
+msgstr "Тип оплаты"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_onliner_region_settings__price
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_onliner_region_settings_line__price
+msgid "Price"
+msgstr "Цена"
+
+#. module: icode_onliner_catalog_integration
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.sale_order_onliner_integration_view
+msgid "Process"
+msgstr "Начать обработку"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__producer
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__producer
+msgid "Producer"
+msgstr "Производитель"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model,name:icode_onliner_catalog_integration.model_product_template
+msgid "Product Template"
+msgstr "Шаблон продукта"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.actions.server,name:icode_onliner_catalog_integration.action_onliner_catalog
+msgid "Publicize on Onliner"
+msgstr "Опубликовать в каталоге Onliner.by"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_sale_order_shop_cancel_order_wizard__reason_id
+msgid "Reason"
+msgstr "Причина"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model,name:icode_onliner_catalog_integration.model_sale_order
+msgid "Sales Order"
+msgstr "Заказ на продажу"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__service_centers
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__service_centers
+msgid "Service Centers"
+msgstr "Сервисные центры"
+
+#. module: icode_onliner_catalog_integration
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.sale_order_onliner_integration_view
+msgid "Ship Order"
+msgstr "Осуществить доставку"
+
+#. module: icode_onliner_catalog_integration
+#: model_terms:ir.ui.view,arch_db:icode_onliner_catalog_integration.sale_order_onliner_integration_view
+msgid "Successfully Delivered"
+msgstr "Доставлено"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__delivery_country_time__3
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__delivery_town_time__3
+msgid "Three days"
+msgstr "В течении трех дней"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__delivery_country_time__2
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_template__delivery_town_time__2
+msgid "Two days"
+msgstr "В течении двух дней"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.actions.server,name:icode_onliner_catalog_integration.cron_update_onliners_sale_orders_ir_actions_server
+#: model:ir.cron,cron_name:icode_onliner_catalog_integration.cron_update_onliners_sale_orders
+#: model:ir.cron,name:icode_onliner_catalog_integration.cron_update_onliners_sale_orders
+msgid "Update Onliner's sale orders"
+msgstr "Обновить список заказов с Onliner.by"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__vendor
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__vendor
+msgid "Vendor"
+msgstr "Продавец"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__name__vitebsk_region
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__name__vitebsk_region
+msgid "Vitebsk Region"
+msgstr "Витебская область"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_product__warranty
+#: model:ir.model.fields,field_description:icode_onliner_catalog_integration.field_product_template__warranty
+msgid "Warranty"
+msgstr "Гарантия"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__payment_type__cash
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order_change_order_payment_type_wizard__payment_type__1
+msgid "cash"
+msgstr "Наличные"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__payment_type__terminal
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order_change_order_payment_type_wizard__payment_type__3
+msgid "cashless"
+msgstr "Безналичный расчёт"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__onliner_delivery_state__confirmed
+msgid "confirmed"
+msgstr "Подтверждён"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__delivery_type__custom
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__delivery_type__custom
+msgid "custom"
+msgstr "Настраиваемый"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__delivery_type__default
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__delivery_type__default
+msgid "default"
+msgstr "По умолчанию"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__onliner_delivery_state__delivered
+msgid "delivered"
+msgstr "Доставлен"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__delivery_type__free
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__delivery_type__free
+msgid "free"
+msgstr "Бесплатно"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__onliner_delivery_state__new
+msgid "new"
+msgstr "Новый"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__onliner_region_settings__delivery_type__no
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__product_onliner_region_settings_line__delivery_type__no
+msgid "no"
+msgstr "Не осуществляется"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__payment_type__online
+msgid "online"
+msgstr "Онлайн"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model,name:icode_onliner_catalog_integration.model_onliner_cart
+msgid "onliner.cart"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model,name:icode_onliner_catalog_integration.model_onliner_region_settings
+msgid "onliner.region_settings"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__onliner_delivery_state__processing
+msgid "processing"
+msgstr "В обработке"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model,name:icode_onliner_catalog_integration.model_product_onliner_region_settings_line
+msgid "product.onliner.region_settings.line"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model,name:icode_onliner_catalog_integration.model_sale_order_change_order_payment_type_wizard
+msgid "sale.order.change.order.payment.type.wizard"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model,name:icode_onliner_catalog_integration.model_sale_order_ship_order_wizard
+msgid "sale.order.ship.order.wizard"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model,name:icode_onliner_catalog_integration.model_sale_order_shop_cancel_order_wizard
+msgid "sale.order.shop.cancel.order.wizard"
+msgstr ""
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__onliner_delivery_state__shipping
+msgid "shipping"
+msgstr "В процессе доставки"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order__onliner_delivery_state__shop_canceled
+msgid "shop canceled"
+msgstr "Отменено магазином"
+
+#. module: icode_onliner_catalog_integration
+#: model:ir.model.fields.selection,name:icode_onliner_catalog_integration.selection__sale_order_change_order_payment_type_wizard__payment_type__2
+msgid "terminal"
+msgstr "Терминал"

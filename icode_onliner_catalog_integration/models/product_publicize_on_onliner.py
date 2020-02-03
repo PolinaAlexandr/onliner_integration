@@ -86,7 +86,7 @@ class OnlinerCatalog(models.Model):
     #         'Accept': 'application/json',
     #         'Content-Type': 'application/json',
     #         'Authorization': token}
-    #     request = requests.put(url, data=json_data, headers=header)
+    #     request = requests.patch(url, data=json_data, headers=header) #использовать тип запроса put при загрузке нового прайслиста и заменой всех данных
     #     return request
     #     # response_summary = json.loads(request.content.decode('utf-8'))
 

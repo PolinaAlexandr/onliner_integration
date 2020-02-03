@@ -25,7 +25,7 @@ class OnlinerCart(models.Model):
                 },
                 "orders": [
                     {
-                        "key": "4355378",
+                        "key": "8797",
                         "user_id": 1,
                         "contact": {
                             "name": "Пользователь Тестовый",
