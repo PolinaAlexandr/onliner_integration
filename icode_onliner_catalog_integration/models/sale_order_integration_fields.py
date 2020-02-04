@@ -14,7 +14,7 @@ STATUSES = [
 PAYMENT_TYPES = [
     ('cash', 'cash'),
     ('terminal', 'terminal'),
-    ('terminal', 'cashless'),
+    ('cashless', 'cashless'),
     ('online', 'online')
 ]
 
